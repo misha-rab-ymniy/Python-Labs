@@ -1,3 +1,4 @@
+import os
 import re
 
 from cli import CLI
@@ -5,7 +6,7 @@ from container import Container
 
 
 class ContainerController:
-    __container: Container
+    __container: Container = None
 
     def __init__(self):
         self.switch()
@@ -73,16 +74,41 @@ class ContainerController:
 
         print(' '.join(found_keys))
 
-    def save(self, args):
-        pass
+    def save(self):
+        if not os.path.exists('./data'):
+            os.mkdir('data')
+        if self.__container:
+            self.__container.save()
+            print("Saved")
+        else:
+            print("Empty container")
 
     def load(self, args):
-        pass
+        self.__container.load()
+        print("Loaded")
 
     def switch(self, args=''):
+        if self.__container:
+            self.__request_for_save()
+
         username = CLI.parse_username()
         self.__container = Container(username)
 
+        self.__request_for_load(args)
+
+    def __request_for_load(self, args):
+        answer = input("Do you want to load? [yes/no] ")
+
+        if answer.lower() in ['yes', 'y']:
+            self.load(args)
+
+    def __request_for_save(self):
+        answer = input("Do you want to save? [yes/no] ")
+
+        if answer.lower() in ['yes', 'y']:
+            self.save()
+
     def exit(self, args):
+        self.__request_for_save()
         print('\nThe application stopped. Goodbye!')
         exit(0)
