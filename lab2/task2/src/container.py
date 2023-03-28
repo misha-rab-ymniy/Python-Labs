@@ -3,6 +3,10 @@ import re
 
 class Container:
     __storage: set[str] = set()
+    __username: str
+
+    def __init__(self, name: str):
+        self.__username = name
 
     def add(self, key: str):
         self.__storage.add(key)

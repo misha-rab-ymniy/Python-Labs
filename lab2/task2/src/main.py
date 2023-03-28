@@ -1,5 +1,8 @@
+from app import APP
+
+
 def main():
-    print()
+    APP().start_app()
 
 
 if __name__ == '__main__':

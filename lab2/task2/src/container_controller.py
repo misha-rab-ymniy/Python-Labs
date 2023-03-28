@@ -1,25 +1,30 @@
 import re
 
+from cli import CLI
 from container import Container
 
 
 class ContainerController:
     __container: Container
-bb
+
+    def __init__(self):
+        username = CLI.parse_username()
+        self.__container = Container(username)
+
     @staticmethod
     def __split_keys(keys: str, function: callable):
-        for key in keys:
-            print('Nothing to add')
+        for key in keys.split():
             function(key)
 
     def add(self, args: str):
         if not args:
+            print('Nothing to add')
             return
 
         self.__split_keys(args, self.__container.add)
         print("Successfully added")
 
-    def list(self):
+    def list(self, args):
         container_list = self.__container.list()
 
         if not container_list:
