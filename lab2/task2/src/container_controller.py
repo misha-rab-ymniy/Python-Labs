@@ -11,8 +11,7 @@ class ContainerController:
     def __init__(self):
         self.switch()
 
-    @staticmethod
-    def __split_keys(keys: str, function: callable):
+    def __split_keys(self, keys: str, function: callable):
         for key in keys.split():
             function(key)
 
@@ -84,8 +83,11 @@ class ContainerController:
             print("Empty container")
 
     def load(self, args):
-        self.__container.load()
-        print("Loaded")
+        try:
+            self.__container.load()
+            print("Loaded")
+        except FileNotFoundError:
+            print("This user doesn't have a container")
 
     def switch(self, args=''):
         if self.__container:

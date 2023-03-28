@@ -33,4 +33,4 @@ class Container:
     def load(self):
         with open(self.__filename, 'rb') as file:
             loaded = pickle.load(file)
-            self.__storage += loaded
+            self.__storage |= loaded
