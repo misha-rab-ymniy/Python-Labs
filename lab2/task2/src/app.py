@@ -11,6 +11,7 @@ class APP:
         # grep <regex> – check the value in the container by regular expression
         # save/load – save container to file/load container from file
         # switch – switches to another user
+        # exit - close application
     '''
     is_work = True
 

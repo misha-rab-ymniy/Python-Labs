@@ -8,8 +8,7 @@ class ContainerController:
     __container: Container
 
     def __init__(self):
-        username = CLI.parse_username()
-        self.__container = Container(username)
+        self.switch()
 
     @staticmethod
     def __split_keys(keys: str, function: callable):
@@ -81,7 +80,8 @@ class ContainerController:
         pass
 
     def switch(self, args=''):
-        pass
+        username = CLI.parse_username()
+        self.__container = Container(username)
 
     def exit(self, args):
         print('\nThe application stopped. Goodbye!')
