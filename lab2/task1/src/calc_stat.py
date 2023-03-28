@@ -47,3 +47,26 @@ def average_words_length(text: str) -> float:
         return sum(len_each_word) / len(len_each_word)
     except ZeroDivisionError:
         return 0
+
+
+def generate_ngrams(text: str, n: int) -> list[str]:
+    return [text[i:i + n] for i in range(len(text) - n + 1)]
+
+
+def get_ngrams_top(text: str, k: int = 10, n: int = 4) -> dict:
+    substring_dict = {}
+    ngrams = generate_ngrams(text, n)
+    for ngram in ngrams:
+        substring_dict[ngram] = substring_dict.get(ngram, 0) + 1
+
+    if not substring_dict:
+        return {}
+    else:
+        sorted_dict = dict(sorted(substring_dict.items(), key=lambda item: item[1], reverse=True))
+        sorted_list = list(sorted_dict)
+        k = min(len(sorted_list), k)
+
+        k_repeated = {}
+        for i in range(k):
+            k_repeated[sorted_list[i]] = sorted_dict[sorted_list[i]]
+        return k_repeated
