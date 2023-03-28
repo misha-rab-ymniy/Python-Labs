@@ -4,8 +4,8 @@ from abbreviations import ONE_LETTER_ABB, TWO_LETTER_ABB
 
 
 def calc_sentences(text: str) -> int:
-    reg = "[.?!]+"
-    number_sentences = len(list(re.finditer(reg, text)))
+    reg = r'[.?!]+'
+    number_sentences = len(re.findall(reg, text))
 
     for abb in ONE_LETTER_ABB:
         num_abb = len(re.findall(abb, text))
@@ -16,3 +16,8 @@ def calc_sentences(text: str) -> int:
         number_sentences -= num_abb * 2
 
     return number_sentences
+
+
+def calc_non_declarative_sentences(text: str) -> int:
+    reg = r'([!?]+)'
+    return len(re.findall(reg, text))
