@@ -2,7 +2,10 @@ from app import APP
 
 
 def main():
-    APP().start_app()
+    try:
+        APP().start_app()
+    except KeyboardInterrupt:
+        print("\nGoodbye!")
 
 
 if __name__ == '__main__':
