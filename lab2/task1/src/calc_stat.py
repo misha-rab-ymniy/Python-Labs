@@ -3,19 +3,34 @@ import re
 from abbreviations import ONE_LETTER_ABB, TWO_LETTER_ABB
 
 
-def calc_sentences(text: str) -> int:
+def calc_all_sentences(text: str) -> int:
     reg = r'[.?!]+'
-    number_sentences = len(re.findall(reg, text))
+    return len(re.findall(reg, text))
 
+
+def calc_sentences(text: str) -> int:
+    return calc_all_sentences(text) - extra_sentences(text)
+
+
+def extra_sentences(text: str) -> int:
+    num = 0
+    reg = r"[\"']([^\"']+)[\"']"
+    direct_speeches = re.findall(reg, text)
+    for direct_speech in direct_speeches:
+        num = calc_all_sentences(direct_speech) - find_abbreviations(direct_speech)
+    return num + find_abbreviations(text)
+
+
+def find_abbreviations(text: str) -> int:
+    num = 0
     for abb in ONE_LETTER_ABB:
         num_abb = len(re.findall(abb, text))
-        number_sentences -= num_abb
+        num += num_abb
 
     for abb in TWO_LETTER_ABB:
         num_abb = len(re.findall(abb, text))
-        number_sentences -= num_abb * 2
-
-    return number_sentences
+        num += num_abb * 2
+    return num
 
 
 def calc_non_declarative_sentences(text: str) -> int:
