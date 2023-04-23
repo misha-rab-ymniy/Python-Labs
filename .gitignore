@@ -130,3 +130,6 @@ dmypy.json
 
 # IDE specific files
 .idea/
+
+# Temp files
+lab2/task2/src/data/
