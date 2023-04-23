@@ -13,7 +13,16 @@ class ContainerController:
 
     def __split_keys(self, keys: str, function: callable):
         for key in keys.split():
+            key = self.__convert_to_num_format(key)
             function(key)
+
+    def __convert_to_num_format(self, key: str):
+        if key.isnumeric():
+            return str(int(key))
+        try:
+            return str(float(key))
+        except ValueError:
+            return key
 
     def add(self, args: str):
         if not args:
@@ -47,9 +56,9 @@ class ContainerController:
         if not args:
             print('Keys to find was not entered')
             return
-        self.__split_keys(args, self._find_key)
+        self.__split_keys(args, self.__find_key)
 
-    def _find_key(self, key):
+    def __find_key(self, key):
         if self.__container.find(key):
             print(f'Key: {key}')
         else:
@@ -73,7 +82,7 @@ class ContainerController:
 
         print(' '.join(found_keys))
 
-    def save(self):
+    def save(self, args):
         if not os.path.exists('./data'):
             os.mkdir('data')
         if self.__container:
@@ -104,13 +113,13 @@ class ContainerController:
         if answer.lower() in ['yes', 'y']:
             self.load(args)
 
-    def __request_for_save(self):
+    def __request_for_save(self, args):
         answer = input("Do you want to save? [yes/no] ")
 
         if answer.lower() in ['yes', 'y']:
-            self.save()
+            self.save(args)
 
     def exit(self, args):
-        self.__request_for_save()
+        self.__request_for_save(args)
         print('\nThe application stopped. Goodbye!')
         exit(0)
