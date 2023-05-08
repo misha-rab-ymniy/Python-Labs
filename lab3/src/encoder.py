@@ -59,7 +59,7 @@ class Encoder:
 
     @staticmethod
     def __encode_collection(obj):
-        return {'__type__': obj.__class__.__name__, 'items': type(obj)([Encoder.encode(item) for item in obj])}
+        return {'__type__': obj.__class__.__name__, 'items': [Encoder.encode(item) for item in obj]}
 
     @staticmethod
     def __encode_module(obj):
@@ -85,9 +85,9 @@ class Encoder:
                                 and key != obj.__code__.co_name
                             },
                             '__defaults__': obj.__defaults__,
-                            '__closure__': tuple(cell for cell in obj.__closure__ if
-                                                 cell.cell_contents is not class_)
-                            if obj.__closure__ is not None else tuple()
+                            '__closure__': [cell for cell in obj.__closure__ if
+                                            cell.cell_contents is not class_]
+                            if obj.__closure__ is not None else []
                             }
         return encoded_function
 
@@ -160,12 +160,14 @@ class Decoder:
 
     @staticmethod
     def __decode_function(obj):
+        code = Decoder.__decode_code(obj['__code__'])
         clos = Decoder.decode(obj['__closure__'])
-        func = types.FunctionType(code=Decoder.__decode_code(obj['__code__']),
+        glob = Decoder.decode(obj['__globals__'])
+        func = types.FunctionType(code=code,
                                   name=obj['__name__'],
-                                  globals=Decoder.decode(obj['__globals__']),
+                                  globals=glob,
                                   argdefs=obj['__defaults__'],
-                                  closure=clos)
+                                  closure=tuple(clos))
         return func
 
     @staticmethod
