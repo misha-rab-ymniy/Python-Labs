@@ -3,12 +3,27 @@ from lab3.src.encoder import Encoder, Decoder
 
 def dumps(obj):
     data = Encoder.encode(obj)
-    return str(data).replace("'", '"')
+    return _dumps(data)
+
+
+def _dumps(obj):
+    if isinstance(obj, (int, float)):
+        return str(obj)
+    if isinstance(obj, bool):
+        return str(obj).lower()
+    if isinstance(obj, str):
+        return f'"{str(obj)}"'
+    if isinstance(obj, type(None)):
+        return "null"
+    if isinstance(obj, (list, tuple)):
+        return f"[{', '.join(list(map(_dumps, obj)))}]"
+    if isinstance(obj, dict):
+        data = ", ".join([f'{_dumps(key)}: {_dumps(value)}' for key, value in obj.items()])
+        return f"""{{{data}}}"""
 
 
 def loads(obj):
     res, _ = _loads(obj, 0)
-    print(res)
     return Decoder.decode(res)
 
 
