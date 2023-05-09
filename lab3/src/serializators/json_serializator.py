@@ -1,4 +1,4 @@
-from lab3.src.encoder import Encoder, Decoder
+from lab3.src.encoder.encoder import Encoder, Decoder
 
 
 def dumps(obj):
@@ -48,7 +48,7 @@ def _loads(obj: str, start_index):
 
 def _loads_str_type(obj, start_index):
     end = start_index + 1
-    while obj[end] not in [',', ']', '}']:
+    while end < len(obj) and obj[end] not in [',', ']', '}']:
         end += 1
     return obj[start_index:end], end + 1
 
