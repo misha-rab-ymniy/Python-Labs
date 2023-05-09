@@ -3,7 +3,7 @@ import inspect
 import types
 from collections.abc import Iterator
 
-from constants import BASE_TYPE
+from lab3.src.encoder.constants import BASE_TYPE
 
 
 class Encoder:
@@ -35,7 +35,6 @@ class Encoder:
             return Encoder.__encode_function(obj)
 
         if isinstance(obj, Iterator):
-            print('iter')
             return Encoder.__encode_iter(obj)
 
         if inspect.isclass(obj):
@@ -85,28 +84,32 @@ class Encoder:
                                 and key != obj.__code__.co_name
                             },
                             '__defaults__': obj.__defaults__,
-                            '__closure__': [cell for cell in obj.__closure__ if
-                                            cell.cell_contents is not class_]
-                            if obj.__closure__ is not None else []
+                            '__closure__': Encoder.encode(tuple(cell for cell in obj.__closure__ if
+                                                                cell.cell_contents is not class_)
+                                                          if obj.__closure__ is not None else tuple()),
+                            '__dict__': obj.__dict__
                             }
         return encoded_function
 
     @staticmethod
     def __encode_object(obj):
-        return {'__type__': 'object', '__class__': Encoder.__encode_class(obj.__class__),
-                'attributes': {
-                    key: Encoder.encode(value) for key, value in inspect.getmembers(obj)
-                    if not key.startswith('__') and not isinstance(value, (types.FunctionType, types.MethodType))
-                }}
+        # print(inspect.getmembers(obj))
+        encoded_object = {'__type__': 'object',
+                          '__class__': Encoder.__encode_class(obj.__class__),
+                          'attributes': {
+                              key: Encoder.encode(value) for key, value in inspect.getmembers(obj) if
+                              not key.startswith('__') and not isinstance(value, (types.FunctionType, types.MethodType))
+                          }}
+        return encoded_object
 
     @staticmethod
     def __encode_code(obj):
         attributes = [attr for attr in dir(obj) if
                       attr.startswith('co') and attr not in ["co_positions", "co_lines", "co_lnotab",
                                                              "co_exceptiontable"]]
-        encoded_code = {
-            attribute: Encoder.encode(getattr(obj, attribute)) for attribute in attributes
-        }
+        encoded_code = {'__type__': 'CodeType',
+                        'attr': {attribute: Encoder.encode(getattr(obj, attribute)) for attribute in attributes
+                                 }}
         return encoded_code
 
     @staticmethod
@@ -117,7 +120,7 @@ class Encoder:
                           "__mro__", "__base__", "__basicsize__",
                           "__class__", "__dictoffset__", "__name__",
                           "__qualname__", "__text_signature__", "__itemsize__",
-                          "__flags__", "__weakrefoffset__", "__objclass__"
+                          "__flags__", "__weakrefoffset__", "__objclass__", "__doc__"
                       ] and type(value) not in [
                           types.WrapperDescriptorType, types.MethodDescriptorType,
                           types.BuiltinFunctionType, types.MappingProxyType,
@@ -138,12 +141,14 @@ class Decoder:
         if type(obj) in BASE_TYPE:
             return obj
         if type(obj) is dict:
-            if obj.get('__type__') is None:
+            if not obj.get('__type__'):
                 return {key: Decoder.decode(value) for key, value in obj.items()}
             if obj['__type__'] in ['function', 'method']:
                 return Decoder.__decode_function(obj)
             if obj['__type__'] == 'module':
                 return Decoder.__decode_module(obj)
+            if obj['__type__'] == 'CodeType':
+                return Decoder.__decode_code(obj)
             if obj['__type__'] == 'tuple':
                 return tuple(Decoder.decode(item) for item in obj['items'])
             if obj['__type__'] == 'cell':
@@ -160,19 +165,25 @@ class Decoder:
 
     @staticmethod
     def __decode_function(obj):
-        code = Decoder.__decode_code(obj['__code__'])
-        clos = Decoder.decode(obj['__closure__'])
-        glob = Decoder.decode(obj['__globals__'])
+        obj.pop('__type__')
+        decode = Decoder.decode(obj)
+        name = decode['__name__']
+        code = decode['__code__']
+        clos = decode['__closure__']
+        glob = decode['__globals__']
         func = types.FunctionType(code=code,
-                                  name=obj['__name__'],
+                                  name=name,
                                   globals=glob,
-                                  argdefs=obj['__defaults__'],
-                                  closure=tuple(clos))
+                                  argdefs=decode['__defaults__'],
+                                  closure=clos)
+        func.__dict__.update(obj['__dict__'])
+        func.__globals__.update({func.__name__: func})
+        # print(func.__globals__)
         return func
 
     @staticmethod
     def __decode_code(obj):
-        decoded = Decoder.decode(obj)
+        decoded = Decoder.decode(obj['attr'])
 
         def f():
             pass
@@ -212,7 +223,7 @@ class Decoder:
                     lst.append((lambda: decode_class).__closure__[0])
                     item['__closure__'] = tuple(lst)
                     func = Decoder.decode(item)
-                setattr(decode_class, item['__name__'], func)
+                setattr(decode_class, key, func)
         return decode_class
 
     @staticmethod
@@ -222,4 +233,5 @@ class Decoder:
         new_obj.__dict__ = {
             key: Decoder.decode(value) for key, value in obj["attributes"].items()
         }
+        # print(dir(new_obj))
         return new_obj
