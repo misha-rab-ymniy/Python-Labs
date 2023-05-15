@@ -3,7 +3,7 @@ import inspect
 import types
 from collections.abc import Iterator
 
-from lab3.src.encoder.constants import BASE_TYPE
+from lab3.src.encoder.constants import BASE_TYPE, UNSERIALIZED_TYPES, UNSERIALIZED_ATTRIBUTES
 
 
 class Encoder:
@@ -93,7 +93,6 @@ class Encoder:
 
     @staticmethod
     def __encode_object(obj):
-        # print(inspect.getmembers(obj))
         encoded_object = {'__type__': 'object',
                           '__class__': Encoder.__encode_class(obj.__class__),
                           'attributes': {
@@ -115,17 +114,7 @@ class Encoder:
     @staticmethod
     def __encode_class(obj):
         attributes = {attribute: Encoder.encode(getattr(obj, attribute)) for attribute, value in inspect.getmembers(obj)
-                      if
-                      attribute not in [
-                          "__mro__", "__base__", "__basicsize__",
-                          "__class__", "__dictoffset__", "__name__",
-                          "__qualname__", "__text_signature__", "__itemsize__",
-                          "__flags__", "__weakrefoffset__", "__objclass__", "__doc__"
-                      ] and type(value) not in [
-                          types.WrapperDescriptorType, types.MethodDescriptorType,
-                          types.BuiltinFunctionType, types.MappingProxyType,
-                          types.GetSetDescriptorType
-                      ]}
+                      if attribute not in UNSERIALIZED_ATTRIBUTES and type(value) not in UNSERIALIZED_TYPES}
         bases = [Encoder.encode(base) for base in obj.__bases__ if base != object]
         encoded_class = {'__type__': 'class',
                          '__name__': obj.__name__,
@@ -151,6 +140,8 @@ class Decoder:
                 return Decoder.__decode_code(obj)
             if obj['__type__'] == 'tuple':
                 return tuple(Decoder.decode(item) for item in obj['items'])
+            if obj['__type__'] == 'list':
+                return [Decoder.decode(item) for item in obj['items']]
             if obj['__type__'] == 'cell':
                 return Decoder.__decode_cell(obj)
             if obj['__type__'] == 'bytes':
@@ -167,18 +158,13 @@ class Decoder:
     def __decode_function(obj):
         obj.pop('__type__')
         decode = Decoder.decode(obj)
-        name = decode['__name__']
-        code = decode['__code__']
-        clos = decode['__closure__']
-        glob = decode['__globals__']
-        func = types.FunctionType(code=code,
-                                  name=name,
-                                  globals=glob,
+        func = types.FunctionType(code=decode['__code__'],
+                                  name=decode['__name__'],
+                                  globals=decode['__globals__'],
                                   argdefs=decode['__defaults__'],
-                                  closure=clos)
+                                  closure=decode['__closure__'])
         func.__dict__.update(obj['__dict__'])
         func.__globals__.update({func.__name__: func})
-        # print(func.__globals__)
         return func
 
     @staticmethod
@@ -233,5 +219,4 @@ class Decoder:
         new_obj.__dict__ = {
             key: Decoder.decode(value) for key, value in obj["attributes"].items()
         }
-        # print(dir(new_obj))
         return new_obj

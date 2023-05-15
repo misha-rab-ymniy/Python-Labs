@@ -34,7 +34,7 @@ def _loads(obj: str, start_index):
         return _loads_str(obj, start_index)
     if obj[start_index] == '[':
         return _loads_list(obj, start_index)
-    if obj[start_index].isdigit():
+    if obj[start_index].isdigit() or obj[start_index] == '-':
         return _loads_num(obj, start_index)
     if obj[start_index] == 'n':
         return None, start_index + 4
