@@ -1,6 +1,10 @@
 from ..encoder.encoder import Encoder, Decoder
 
 
+def dump(obj, file):
+    file.write(dumps(obj))
+
+
 def dumps(obj):
     data = Encoder.encode(obj)
     return _dumps(data)
@@ -27,6 +31,10 @@ def loads(obj):
     return Decoder.decode(res)
 
 
+def load(file):
+    return loads(file.read())
+
+
 def _loads(obj: str, start_index):
     end = start_index + 1
     while end < len(obj) and obj[end] != '>':
@@ -42,7 +50,6 @@ def _loads(obj: str, start_index):
     if obj[start_index + 1:end] == 'none':
         return None, end + 12
     if obj[start_index + 1:end] == 'bool':
-        k = obj[end + 1:len(obj)]
         if obj[end + 1] == 'T':
             return True, end + 12
         else:

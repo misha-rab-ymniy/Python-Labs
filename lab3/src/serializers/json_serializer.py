@@ -1,6 +1,10 @@
 from ..encoder.encoder import Encoder, Decoder
 
 
+def dump(obj, file):
+    file.write(dumps(obj))
+
+
 def dumps(obj):
     data = Encoder.encode(obj)
     return _dumps(data)
@@ -25,6 +29,10 @@ def _dumps(obj):
 def loads(obj):
     res, _ = _loads(obj, 0)
     return Decoder.decode(res)
+
+
+def load(file):
+    return loads(file.read())
 
 
 def _loads(obj: str, start_index):
