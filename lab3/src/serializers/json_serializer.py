@@ -1,4 +1,4 @@
-from lab3.src.encoder.encoder import Encoder, Decoder
+from ..encoder.encoder import Encoder, Decoder
 
 
 def dumps(obj):

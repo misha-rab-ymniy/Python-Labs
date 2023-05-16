@@ -1,1 +1,1 @@
-from serializators import json_serializator as json
+from .serializer_factory import SerializerFactory

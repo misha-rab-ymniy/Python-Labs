@@ -1,4 +1,4 @@
-from lab3.src.encoder.encoder import Encoder, Decoder
+from ..encoder.encoder import Encoder, Decoder
 
 
 def dumps(obj):
@@ -31,7 +31,6 @@ def _loads(obj: str, start_index):
     end = start_index + 1
     while end < len(obj) and obj[end] != '>':
         end += 1
-    a = obj[start_index + 1:end]
     if obj[start_index + 1:end] == 'dict':
         return _loads_dict(obj, end + 1)
     if obj[start_index + 1:end] == 'str':
@@ -95,7 +94,7 @@ def _loads_dict(obj, start_index):
         while obj[i] != '>':
             i += 1
         key = obj[start:i]
-        o = obj[i:end]
+
         value, i = _loads(obj, i + 1)
         i += 3 + len(key)
         dct[key] = value
@@ -105,7 +104,6 @@ def _loads_dict(obj, start_index):
 
 def _loads_list(obj, start_index):
     end = start_index
-    a = obj[end:len(obj)]
     brackets = 1
     while brackets:
         if obj[end:end + 6] == '<list>':
@@ -120,7 +118,5 @@ def _loads_list(obj, start_index):
     i = start_index
     while i < end - 7:
         res, i = _loads(obj, i)
-        o = obj[i: end]
         lst.append(res)
-    a = obj[end: len(obj)]
     return lst, end

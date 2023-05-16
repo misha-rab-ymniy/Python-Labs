@@ -1,9 +1,9 @@
 import base64
 import inspect
-import types
 from collections.abc import Iterator
+from types import ModuleType, CellType, CodeType, MethodType, FunctionType
 
-from lab3.src.encoder.constants import BASE_TYPE, UNSERIALIZED_TYPES, UNSERIALIZED_ATTRIBUTES
+from .constants import BASE_TYPE, UNSERIALIZED_TYPES, UNSERIALIZED_ATTRIBUTES
 
 
 class Encoder:
@@ -16,10 +16,10 @@ class Encoder:
         if isinstance(obj, bytes):
             return Encoder.__encode_bytes(obj)
 
-        if isinstance(obj, types.ModuleType):
+        if isinstance(obj, ModuleType):
             return Encoder.__encode_module(obj)
 
-        if isinstance(obj, types.CellType):
+        if isinstance(obj, CellType):
             return Encoder.__encode_cell(obj)
 
         if isinstance(obj, (list, tuple)):
@@ -28,10 +28,10 @@ class Encoder:
         if isinstance(obj, dict):
             return Encoder.__encode_dict(obj)
 
-        if isinstance(obj, types.CodeType):
+        if isinstance(obj, CodeType):
             return Encoder.__encode_code(obj)
 
-        if isinstance(obj, (types.MethodType, types.FunctionType)):
+        if isinstance(obj, (MethodType, FunctionType)):
             return Encoder.__encode_function(obj)
 
         if isinstance(obj, Iterator):
@@ -74,7 +74,7 @@ class Encoder:
             inspect.getmodule(obj),
             obj.__qualname__.split(".<locals>", 1)[0].rsplit(".", 1)[0],
         )
-        encoded_function = {'__type__': 'function' if isinstance(obj, types.FunctionType) else 'method',
+        encoded_function = {'__type__': 'function' if isinstance(obj, FunctionType) else 'method',
                             '__code__': Encoder.encode(obj.__code__),
                             '__name__': obj.__name__,
                             '__globals__': {
@@ -97,7 +97,7 @@ class Encoder:
                           '__class__': Encoder.__encode_class(obj.__class__),
                           'attributes': {
                               key: Encoder.encode(value) for key, value in inspect.getmembers(obj) if
-                              not key.startswith('__') and not isinstance(value, (types.FunctionType, types.MethodType))
+                              not key.startswith('__') and not isinstance(value, (FunctionType, MethodType))
                           }}
         return encoded_object
 
@@ -158,11 +158,11 @@ class Decoder:
     def __decode_function(obj):
         obj.pop('__type__')
         decode = Decoder.decode(obj)
-        func = types.FunctionType(code=decode['__code__'],
-                                  name=decode['__name__'],
-                                  globals=decode['__globals__'],
-                                  argdefs=decode['__defaults__'],
-                                  closure=decode['__closure__'])
+        func = FunctionType(code=decode['__code__'],
+                            name=decode['__name__'],
+                            globals=decode['__globals__'],
+                            argdefs=decode['__defaults__'],
+                            closure=decode['__closure__'])
         func.__dict__.update(obj['__dict__'])
         func.__globals__.update({func.__name__: func})
         return func
