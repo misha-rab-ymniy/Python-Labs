@@ -1,7 +1,7 @@
 import math
 
 # from serializers import json_serializator as json
-from src.serializer_factory import SerializerFactory
+from custom_serializer.serializer_factory import SerializerFactory
 
 
 class C:
