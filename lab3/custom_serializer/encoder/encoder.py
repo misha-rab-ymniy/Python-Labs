@@ -195,20 +195,28 @@ class Decoder:
         bases = tuple(Decoder.decode(item) for item in obj.pop('__bases__'))
         data = {
             attr: Decoder.decode(item) for (attr, item) in obj['data'].items()
-            if not (isinstance(item, dict) and item.get('__type__') == 'function')
+            if not (isinstance(item, dict) and item.get('__type__') in ['function', 'method'])
         }
 
         decode_class = type(name, bases, data)
 
         for key, item in obj['data'].items():
-            if isinstance(item, dict) and item.get('__type__') == 'function':
+            if isinstance(item, dict) and item.get('__type__') in ['function', 'method']:
+                func_type = item.get('__type__')
                 try:
                     func = Decoder.decode(item)
                 except ValueError:
-                    lst = list(item['__closure__'])
+                    lst = list(item['__closure__']['items'])
                     lst.append((lambda: decode_class).__closure__[0])
                     item['__closure__'] = tuple(lst)
+                    item['__type__'] = 'function'
                     func = Decoder.decode(item)
+
+                func.__globals__.update({decode_class.__name__: decode_class})
+
+                if func_type == 'method':
+                    func = MethodType(func, decode_class)
+
                 setattr(decode_class, key, func)
         return decode_class
 
