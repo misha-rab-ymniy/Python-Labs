@@ -1,0 +1,25 @@
+{% extends "cinema/base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.title }}{% else %}Фильмы{% endif %}
+{% endblock %}
+{% block content %}
+
+    <link href="{% static '/css/detail.css' %}" rel="stylesheet">
+    <div class="film-detail flex">
+        <div class="image-container">
+            <img src="{% if film.image %}{{ film.image.url }}{% else %}{% static 'images/img.png' %}{% endif %}">
+            <h1>{{ film.name }}</h1>
+        </div>
+        <div>
+            <h2><a href="{{ film.category.get_absolute_url }}">{{ film.category }}</a></h2>
+            <p class="price">${{ film.price }}</p>
+            {{ film.description|linebreaks }}
+        </div>
+    </div>
+    {#    <form action="{% url 'cart:cart_add' film.id %}" method="post">#}
+    {#        {{ cart_product_form }}#}
+    {#        {% csrf_token %}#}
+    {#        <input type="submit" value="Add to cart">#}
+    {#    </form>#}
+{% endblock %}
