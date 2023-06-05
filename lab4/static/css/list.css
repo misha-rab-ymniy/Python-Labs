@@ -30,10 +30,12 @@
 /* Стили для основного содержимого */
 #main {
     margin-left: 220px;
+    display: flex;
 }
 
 .product-list {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
@@ -41,6 +43,7 @@
     width: 200px;
     margin-right: 20px;
     margin-bottom: 20px;
+    display: flex;
 }
 
 .item a {
@@ -55,4 +58,10 @@
 
 .item .item-info {
     margin-top: 10px;
+}
+
+.image-container {
+    margin-bottom: 20px;
+    width: 200px;
+    border-radius: 20px;
 }
