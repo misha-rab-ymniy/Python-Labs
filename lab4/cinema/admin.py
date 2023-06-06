@@ -20,8 +20,3 @@ class FilmAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Film, FilmAdmin)
-
-
-class HallAdmin(admin.ModelAdmin):
-    list_display = ['name', 'places']
-    list_filter = ['name']

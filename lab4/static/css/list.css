@@ -1,67 +1,106 @@
-
-#sidebar {
-    width: 200px;
-    float: left;
-}
-
-#sidebar h3 {
-    margin-bottom: 10px;
-}
-
-#sidebar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#sidebar li {
-    margin-bottom: 5px;
-}
-
-#sidebar li a {
+/* product-list.css */
+/* Стили для боковой панели */
+a {
     text-decoration: none;
-    color: #000;
+    color: black;
 }
 
-#sidebar li.selected {
-    font-weight: bold;
+h1 {
+    margin-bottom: 25px;
 }
 
-/* Стили для основного содержимого */
-#main {
-    margin-left: 220px;
+.wrapper {
+    font-family: sans-serif;
+}
+
+.sidebar {
+    margin-bottom: 60px;
+}
+
+.sidebar_categories {
+    list-style: none;
     display: flex;
+    padding: 0;
+}
+
+.category {
+    margin-right: 40px;
+}
+
+.category_link {
+    text-decoration: none;
+    color: black;
+}
+
+.category.selected {
+    font-weight: bold;
 }
 
 .product-list {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    gap: 60px;
     flex-wrap: wrap;
 }
 
-.item {
+img {
     width: 200px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    display: flex;
-}
-
-.item a {
-    text-decoration: none;
-    color: #000;
-}
-
-.item img {
-    width: 100%;
-    height: auto;
-}
-
-.item .item-info {
-    margin-top: 10px;
-}
-
-.image-container {
-    margin-bottom: 20px;
-    width: 200px;
+    background-size: cover;
     border-radius: 20px;
+}
+
+.item {
+    width: 280px;
+}
+
+.item-info {
+    padding-right: 20px;
+}
+
+.item-info_name {
+    font-size: 18px;
+    font-weight: bolder;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-info_description {
+    font-size: 14px;
+    height: 80px;
+    color: #888888;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.item-info_order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-info_price {
+    font-size: 16px;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 40px;
+}
+
+.item-info_order_button {
+    width: 100px;
+    height: 40px;
+    background-color: rgb(255, 94, 0);
+    color: white;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.item-info_order_button:hover {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
 }

@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cinema.apps.CinemaConfig',
-    'cart'
+    'cart',
+    'orders',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CART_SESSION_ID = 'cart'
+
+# Пользователи будут перенаправлены на главную страницу после входа в систему
+LOGIN_REDIRECT_URL = "home"
+
+LOGOUT_REDIRECT_URL = "/"

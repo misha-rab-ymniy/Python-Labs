@@ -1,18 +1,17 @@
 {% extends "cinema/base.html" %}
 {% load static %}
 {% block title %}
-    Ваша корзина
+    Корзина
 {% endblock %}
 {% block content %}
     <link href="{% static '/css/cart.css' %}" rel="stylesheet">
-    <h1>Ваша корзина</h1>
-    <table class="cart">
-        <tbody>
-        {% for item in cart %}
-            {% with film=item.film %}
-                <tr>
-                    <td class="image-container">
-                        <a href="{{ film.get_absolute_url }}">
+    <h1>Корзина&#9;|&#9;{{ total_items }}</h1>
+    <div class="cart">
+        <div>
+            {% for item in cart %}
+                {% with film=item.film %}
+                    <div class="cart_item">
+                        <a class="cart_item_image" href="{{ film.get_absolute_url }}">
                             <img src="
                                 {% if film.image %}
                                     {{ film.image.url }}
@@ -20,26 +19,32 @@
                                     {% static 'images/img.png' %}
                                 {% endif %}">
                         </a>
-                    </td>
-                    <td>{{ film.name }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td><a href="{% url 'cart:cart_remove' film.id %}">Удалить</a></td>
-                    <td class="num">{{ item.price }} руб.</td>
-                    <td class="num">{{ item.total_price }} руб.</td>
-                </tr>
-            {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <td>Total</td>
-            <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <p class="text-right">
-        <a href="{% url 'cinema:film_list' %}" class="button light">Continue shopping</a>
-        {#        <a href="{% url 'orders:order_create' %}" class="button">#}
-        {#            Checkout#}
-        {#        </a>#}
-    </p>
+                        <div class="cart_item_description">
+                            <div class="cart_item_name">{{ film.name }} - {{ film.price }}</div>
+                            <div class="cart_item_product_description">{{ film.description }}</div>
+                            <div class="cart_item_price">{{ item.price }} руб. x {{ item.quantity }}
+                                = {{ item.total_price }} руб.
+                            </div>
+
+                            <a class="cart-button" href="{% url 'cart:cart_remove' film.id %}">Удалить</a>
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+            <div class="total">
+                <div class="total_title">Итого:</div>
+
+                <div class="total_value">{{ cart.get_total_price }} руб.</div>
+            </div>
+        </div>
+    </div>
+    <div class="cart_buttons">
+        {% if user.is_authenticated %}
+            <a href="{% url 'orders:order_create' %}" class="cart-button">Оформить заказ</a>
+        {% else %}
+            <a href="/accounts/login/" class="cart-button">Оформить заказ</a>
+        {% endif %}
+
+        <a href="{% url 'cinema:film_list' %}" class="cart-button grey">Вернуться в меню</a>
+    </div>
 {% endblock %}

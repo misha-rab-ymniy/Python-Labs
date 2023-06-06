@@ -24,8 +24,12 @@ app_name = 'cinema'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),
-    path('', include(('cinema.urls', 'cinema'), namespace='cinema'))
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('', include(('cinema.urls', 'cinema'), namespace='cinema')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('home/', include('users.urls'))
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

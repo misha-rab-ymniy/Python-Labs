@@ -1,0 +1,49 @@
+<!--/templates/register.html-->
+
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="utf-8"/>
+        <link href="{% static '/css/signup.css' %}" rel="stylesheet">
+    </head>
+    <div class="registration-wrapper">
+
+        <h2>Регистрация</h2>
+
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            <div class="registration_username">Придумайте имя пользователя</div>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div class="error-message">
+                    {% for error in form.username.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="registration_password1">Придумайте пароль</div>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                <div class="error-message">
+                    {% for error in form.password1.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="registration_password2">Подтвердите пароль</div>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                <div class="error-message">
+                    {% for error in form.password2.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <input class="submit" type="submit" value="Зарегестрироваться">
+        </form>
+
+        <a class="registration-link" href="{% url 'login' %}">Войти</a>
+        <a class="registration-link" href="{% url 'cinema:film_list' %}">На главную</a>
+    </div>
+{% endblock %}

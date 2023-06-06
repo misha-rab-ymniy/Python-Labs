@@ -1,0 +1,34 @@
+{% extends "cinema/base.html" %}
+{% block title %}Оплатить{% endblock %}
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="utf-8"/>
+        <link href="{% static '/css/signup.css' %}" rel="stylesheet">
+    </head>
+    <div class="registration-wrapper">
+        <h1>Заказать</h1>
+        <div class="order-info">
+            <h3>Ваш заказ</h3>
+            <ul>
+                {% for item in cart %}
+                    <li style="font-family: monospace; font-size: 14px;">
+                        {{ item.quantity }} x {{ item.film.name }} =
+                        <span>{{ item.total_price }} руб.</span>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p style="font-family: monospace; font-size: 16px;">Итого: ${{ cart.get_total_price }}</p>
+        </div>
+        <form action="." method="post" class="registration-form">
+            <div class="registration_username">Имя</div>
+            {{ form.first_name }}
+            <div class="registration_username">Фамилия</div>
+            {{ form.last_name }}
+            <div class="registration_username">Email</div>
+            {{ form.email }}
+            <input class="submit" type="submit" value="Сделать заказ">
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}

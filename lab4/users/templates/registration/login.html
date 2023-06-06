@@ -1,0 +1,25 @@
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="utf-8"/>
+        <link href="{% static '/css/signup.css' %}" rel="stylesheet">
+    </head>
+    <div class="registration-wrapper">
+
+        <h2>Вход</h2>
+
+        <form class="registration-form" method="post">
+            {% csrf_token %}
+            <div class="registration_username">Введите имя пользователя</div>
+            {{ form.username }}
+            <div class="registration_password1">Введите пароль</div>
+            {{ form.password }}
+            {{ form.password.errors }}
+            {{ form.non_field_errors }}
+            <input class="submit" type="submit" value="Войти">
+        </form>
+
+        <a class="registration-link" href="{% url 'signup' %}">Зарегестрироваться</a>
+        <a class="registration-link" href="{% url 'cinema:film_list' %}">На главную</a>
+    </div>
+{% endblock %}
