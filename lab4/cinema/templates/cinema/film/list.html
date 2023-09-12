@@ -6,10 +6,7 @@
 {% block content %}
     <link href="{% static '/css/list.css' %}" rel="stylesheet">
     <div class="wrapper">
-
-
         <div class="sidebar">
-
             <ul class="sidebar_categories">
                 <li {% if not category %}class="selected category"{% else %}class="category"{% endif %}>
                     <a class="category_link" href="{% url 'cinema:film_list' %}">Все</a>
@@ -25,10 +22,8 @@
         <div id="main" class="product-list{% if products|length == 1 %} single-item{% endif %}">
             {% for film in films %}
                 <div class="item">
-
                     <img src="
                             {% if film.image %}{{ film.image.url }}{% else %}{% static 'images/img.png' %}{% endif %}">
-
                     <div class="item-info">
                         <div class="item-info_name">{{ film.name }}</div>
                         <div class="item-info_description">{{ film.description }}</div>

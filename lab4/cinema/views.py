@@ -4,6 +4,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Film
 
 
+def main(request):
+    return render(request, 'cinema/main.html')
+
+
 # Create your views here.
 def film_list(request, category_slug=None):
     category = None

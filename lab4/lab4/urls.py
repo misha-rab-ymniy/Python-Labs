@@ -27,7 +27,8 @@ urlpatterns = [
     path('orders/', include('orders.urls', namespace='orders')),
     path('', include(('cinema.urls', 'cinema'), namespace='cinema')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('home/', include('users.urls'))
+    path('home/', include('users.urls')),
+    path('info/', include('info.urls'))
 ]
 
 if settings.DEBUG:
