@@ -36,10 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cinema.apps.CinemaConfig',
+    'news',
     'info',
     'cart',
     'orders',
-    'users'
+    'users',
+    'feedbacks'
 ]
 
 MIDDLEWARE = [

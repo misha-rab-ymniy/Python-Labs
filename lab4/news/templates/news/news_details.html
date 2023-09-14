@@ -1,0 +1,10 @@
+{% extends 'cinema/base.html' %}
+
+{% block title %}Article details{% endblock %}
+
+{% block content %}
+    <h2>{{ object.title }}</h2>
+    <h3>{{ object.description }}</h3>
+    <p>{{ object.content }}</p>
+    <p><a href="{% url 'news_page' %}">Вернуться к списку статей</a></p>
+{% endblock %}

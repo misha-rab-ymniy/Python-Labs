@@ -3,25 +3,28 @@
 <head>
     <meta charset="utf-8"/>
     <title>{% block title %}Кинотеатр{% endblock %}</title>
-    <link rel="icon" sizes="32x32" href="{% static 'images/logo.png' %}" type="image/png"/>
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png"/>
     <link href="{% static '/css/base.css' %}" rel="stylesheet"/>
     <link href="{% static '/css/list.css' %}" rel="stylesheet"/>
     <link href="{% static '/css/detail.css' %}" rel="stylesheet"/>
 </head>
 <body>
 <header id="header">
-    <a href="/" class="logo"></a>
-    <a href="/list">Каталог</a>
-    {% with total_items=cart|length %} {% if cart|length >= 0 %}
-        {% if user.is_authenticated %}
-            <a class="log_link" href="/accounts/logout/">Выйти</a>
-        {% else %}
-            <a class="log_link" href="/accounts/login/">Войти</a>
+    <a href="{% url 'cinema:main' %}" class="logo"></a>
+    <a href="{% url 'cinema:film_list' %}">Каталог</a>
+    <a href="{% url 'info:about_us' %}">Инфо</a>
+    <a href="{% url 'news_page' %}">Новости</a>
+
+    {% if user.is_authenticated %}
+        <a class="log_link" href="/accounts/logout/">Выйти</a>
+    {% else %}
+        <a class="log_link" href="/accounts/login/">Войти</a>
+    {% endif %}
+    {% with total_items=cart|length %}
+        {% if cart|length >= 0 %}
+            <a class="cart_icon" href="{% url 'cart:cart_detail' %}">Корзина | {{ cart|length }}</a>
         {% endif %}
-        <a class="cart_icon" href="{% url 'cart:cart_detail' %}">
-        Корзина
-    {% endif %} {% endwith %}
-    </a>
+    {% endwith %}
 </header>
 <main id="content">
     {% block content %} {% endblock %}
