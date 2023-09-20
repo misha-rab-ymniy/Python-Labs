@@ -1,0 +1,56 @@
+{% extends 'cinema/base.html' %}
+
+{% block title %}Часто задаваемые вопросы{% endblock %}
+
+{% block content %}
+    <section itemscope itemtype="https://schema.org/FAQPage">
+        <h2 itemprop="name">Часто задаваемые вопросы</h2>
+        <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <summary itemprop="name">Как узнать расписание сеансов и цены на билеты?</summary>
+            <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">
+                    Расписание сеансов и цены на билеты доступны на нашем сайте в разделе "Сеансы" или "Расписание". Вы
+                    можете выбрать фильм, дату и время сеанса, а также увидеть актуальные цены.
+                </p>
+            </div>
+        </details>
+        <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <summary itemprop="name">Можно ли забронировать билеты заранее?</summary>
+            <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">
+                    Да, вы можете забронировать билеты на нашем сайте. Просто выберите фильм, дату и время сеанса, а
+                    затем следуйте инструкциям для бронирования. Бронь билетов позволит вам заранее забрать их у кассы
+                    кинотеатра.
+                </p>
+            </div>
+        </details>
+        <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <summary itemprop="name">Есть ли скидки для студентов, пенсионеров или детей?</summary>
+            <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">
+                    Да, у нас действуют скидки для студентов, пенсионеров и детей. Подробную информацию о скидках и
+                    условиях их получения можно найти на странице "Цены" или "Акции".
+                </p>
+            </div>
+        </details>
+        <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <summary itemprop="name">Какие условия возврата или обмена билетов?</summary>
+            <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">
+                    Мы предоставляем возможность возврата или обмена билетов при условии, что вы сделали это не позднее,
+                    чем за два часа до начала сеанса. Подробности и инструкции по возврату можно уточнить у нашего
+                    персонала в кинотеатре.
+                </p>
+            </div>
+        </details>
+        <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <summary itemprop="name">Есть ли парковка рядом с кинотеатром?</summary>
+            <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <p itemprop="text">
+                    Да, у нас есть парковка для посетителей кинотеатра. Она находится неподалеку от входа, и вы можете
+                    бесплатно воспользоваться этой услугой во время вашего визита.
+                </p>
+            </div>
+        </details>
+    </section>
+{% endblock %}
