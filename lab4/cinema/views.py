@@ -23,6 +23,6 @@ def film_list(request, category_slug=None):
 
 
 def film_detail(request, id, slug):
-    film = get_object_or_404(Film, id=id, slug=slug, available=True)
+    film = get_object_or_404(Film, id=id)
     cart_film_form = CartAddFilmForm()
     return render(request, 'cinema/film/detail.html', {'film': film, 'cart_film_form': cart_film_form})

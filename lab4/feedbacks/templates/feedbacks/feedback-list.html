@@ -1,0 +1,26 @@
+{% extends 'cinema/base.html' %}
+
+{% block title %}Feedbacks{% endblock %}
+
+{% block content %}
+    <a href="{% url 'feedback-create' %}">Новый отзыв</a>
+    {% if not feedback_list %}
+        <p>Нет отзывов</p>
+    {% endif %}
+    {% for feedback in object_list %}
+        <article>
+            <h2>{{ feedback.title }} {{ feedback.rating }}/5</h2>
+            <h3>
+                Автор:
+                {% if feedback.author.username %}
+                    {{ feedback.author.username }}
+                {% else %}
+                    Пользователь удален
+                {% endif %}
+                -
+                <time>{{ feedback.created_at }}</time>
+            </h3>
+            <p>{{ feedback.content }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}

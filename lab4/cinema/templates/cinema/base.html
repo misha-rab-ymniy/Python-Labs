@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>{% block title %}Кинотеатр{% endblock %}</title>
-    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png"/>
+    <link type="image/png" sizes="96x96" rel="icon" href="{% static 'images/logo.png' %}"/>
     <link href="{% static '/css/base.css' %}" rel="stylesheet"/>
     <link href="{% static '/css/list.css' %}" rel="stylesheet"/>
     <link href="{% static '/css/detail.css' %}" rel="stylesheet"/>
@@ -14,6 +14,7 @@
     <a href="{% url 'cinema:film_list' %}">Каталог</a>
     <a href="{% url 'info:about_us' %}">Инфо</a>
     <a href="{% url 'news_page' %}">Новости</a>
+    <a href="{% url 'feedback-list' %}">Отзывы</a>
 
     {% if user.is_authenticated %}
         <a class="log_link" href="/accounts/logout/">Выйти</a>
