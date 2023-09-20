@@ -5,28 +5,28 @@
     <title>{% block title %}Кинотеатр{% endblock %}</title>
     <link type="image/png" sizes="96x96" rel="icon" href="{% static 'images/logo.png' %}"/>
     <link href="{% static '/css/base.css' %}" rel="stylesheet"/>
-    <link href="{% static '/css/list.css' %}" rel="stylesheet"/>
     <link href="{% static '/css/detail.css' %}" rel="stylesheet"/>
 </head>
 <body>
 <header id="header">
     <a href="{% url 'cinema:main' %}" class="logo"></a>
-    <a href="{% url 'cinema:film_list' %}">Каталог</a>
-    <a href="{% url 'news_page' %}">Новости</a>
-    <a href="{% url 'feedback-list' %}">Отзывы</a>
-    <a href="{% url 'info:about_us' %}">О нас</a>
-    <a href="{% url 'info:faq' %}">FAQ</a>
-    <a href="{% url 'info:privacy_policy' %}">Политика приватности</a>
+    <a class="tab" href="{% url 'cinema:film_list' %}">Каталог</a>
+    <a class="tab" href="{% url 'news_page' %}">Новости</a>
+    <a class="tab" href="{% url 'feedback-list' %}">Отзывы</a>
+    <a class="tab" href="{% url 'info:about_us' %}">О нас</a>
+    <a class="tab" href="{% url 'info:faq' %}">FAQ</a>
+    <a class="tab" href="{% url 'info:contacts' %}">Контакты</a>
+    <a class="tab" href="{% url 'info:privacy_policy' %}">Политика приватности</a>
 
 
     {% if user.is_authenticated %}
-        <a class="log_link" href="/accounts/logout/">Выйти</a>
+        <a class="tab" class="log_link" href="/accounts/logout/">Выйти</a>
     {% else %}
-        <a class="log_link" href="/accounts/login/">Войти</a>
+        <a class="tab" class="log_link" href="/accounts/login/">Войти</a>
     {% endif %}
     {% with total_items=cart|length %}
         {% if cart|length >= 0 %}
-            <a class="cart_icon" href="{% url 'cart:cart_detail' %}">Корзина | {{ cart|length }}</a>
+            <a class="cart_icon tab" href="{% url 'cart:cart_detail' %}">Корзина | {{ cart|length }}</a>
         {% endif %}
     {% endwith %}
 </header>

@@ -12,3 +12,7 @@ def faq(request):
 
 def privacy_policy(request):
     return render(request, 'privacy_policy/privacy_policy.html')
+
+
+def contacts(request):
+    return render(request, 'contacts/contacts.html')
