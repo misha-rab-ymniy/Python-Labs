@@ -16,10 +16,10 @@
             {{ form.password }}
             {{ form.password.errors }}
             {{ form.non_field_errors }}
-            <input class="submit" type="submit" value="Войти">
+            <button class="submit" type="submit">Войти</button>
         </form>
 
-        <a class="registration-link" href="{% url 'signup' %}">Зарегестрироваться</a>
+        <a class="registration-link" href="{% url 'users:signup' %}">Зарегестрироваться</a>
         <a class="registration-link" href="{% url 'cinema:film_list' %}">На главную</a>
     </div>
 {% endblock %}

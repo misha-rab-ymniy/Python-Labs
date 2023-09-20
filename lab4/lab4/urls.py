@@ -26,8 +26,10 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('', include(('cinema.urls', 'cinema'), namespace='cinema')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('home/', include('users.urls')),
+    path(
+        "auth/",
+        include(("users.urls", "users"), namespace="users"),
+    ),
     path('news/', include('news.urls')),
     path("feedbacks/", include("feedbacks.urls")),
     path('info/', include('info.urls', namespace='info'))

@@ -15,7 +15,7 @@ class FeedbackCreateView(LoginRequiredMixin, CreateView):
     template_name = "feedbacks/feedback-create.html"
     fields = ("title", "rating", "content")
     success_url = reverse_lazy("feedback-list")
-    login_url = reverse_lazy("login")
+    login_url = reverse_lazy("users:signin")
 
     def form_valid(self, form):
         form.instance.author = self.request.user

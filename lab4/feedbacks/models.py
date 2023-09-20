@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+import users.models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
@@ -13,7 +13,7 @@ class Feedback(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     author = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True
+        users.models.CustomUser, on_delete=models.SET_NULL, null=True
     )
 
     def __str__(self):

@@ -42,9 +42,9 @@
         {% if user.is_authenticated %}
             <a href="{% url 'orders:order_create' %}" class="cart-button">Оформить заказ</a>
         {% else %}
-            <a href="/accounts/login/" class="cart-button">Оформить заказ</a>
+            <a href="{% url 'users:signin' %}" class="cart-button">Оформить заказ</a>
         {% endif %}
 
         <a href="{% url 'cinema:film_list' %}" class="cart-button grey">Вернуться в меню</a>
     </div>
-{% endblock %}
+{% endblock %}users:
