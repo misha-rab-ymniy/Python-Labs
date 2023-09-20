@@ -1,0 +1,52 @@
+{% extends 'cinema/base.html' %}
+
+{% block title %}Скидки и купоны{% endblock %}
+
+{% block content %}
+    <h2>Скидки и купоны</h2>
+
+    <article itemscope itemtype="https://schema.org/Offer">
+        <h3 itemprop="name">Скидка в честь дня семьи</h3>
+        <p itemprop="description"><strong>Описание:</strong>
+            Проведите веселый семейный день в нашем кинотеатре с этим купоном. Купите один билет для взрослых
+            билет и получите один детский билет (младше 12 лет) бесплатно.</p>
+        <p><strong>Действительность:</strong> Действителен до
+            <time itemprop="validThrough" datetime="2023-31-12">Декабрь 31, 2023</time>
+        </p>
+    </article>
+
+
+    <article itemscope itemtype="https://schema.org/Offer">
+        <h3 itemprop="name">Скидка в честь дня студента</h3>
+        <p itemprop="description"><strong>Description:</strong>
+            Все студенты, имеющие действительный студенческий билет, могут воспользоваться скидкой в размере 20% на свой
+            входной билет в нашем кинотеатре.</p>
+        <p><strong>Действительность:</strong> Действителен до
+            <time itemprop="validThrough" datetime="2023-31-12">Декабрь 31, 2023</time>
+        </p>
+    </article>
+
+    <article itemscope itemtype="https://schema.org/Offer">
+        <h3 itemprop="name">Скидка пенсионерам</h3>
+        <p itemprop="description"><strong>Description:</strong>
+            Пожилые люди в возрасте 65 лет и старше могут посетить наш кинотеатр со скидкой. Покажи этот
+            купон на получение скидки в размере 25% на билет.</p>
+        <p><strong>Действительность:</strong> Действителен до
+            <time itemprop="validThrough" datetime="2023-31-12">Декабрь 31, 2023</time>
+        </p>
+    </article>
+
+    <article itemscope itemtype="https://schema.org/Offer">
+        <h3 itemprop="name">Скидка группе (Не действителен)</h3>
+        <p itemprop="description"><strong>Описание:</strong>
+            Приведите группу из 10 и более человек в наш кинотеатр и получите групповую скидку
+            скидка 15% на каждый билет.</p>
+        <p><strong>Действительность:</strong> Действителен до
+            <time itemprop="validThrough" datetime="2022-31-12">Декабрь 31, 2022</time>
+        </p>
+        <p><strong>Уведомление:</strong> Срок действия этого купона истек, и он больше не действителен. Пожалуйста,
+            проверьте наш веб-сайт или посетите наш кинотеатр для получения наших текущих скидок.</p>
+    </article>
+
+
+{% endblock %}

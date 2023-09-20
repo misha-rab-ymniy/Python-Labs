@@ -20,3 +20,7 @@ def contacts(request):
 
 def additional(request):
     return render(request, 'additional/additional.html')
+
+
+def coupons(request):
+    return render(request, 'coupons/coupons.html')
