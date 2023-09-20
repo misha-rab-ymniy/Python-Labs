@@ -8,3 +8,7 @@ def about_us(request):
 
 def faq(request):
     return render(request, 'faq/faq.html')
+
+
+def privacy_policy(request):
+    return render(request, 'privacy_policy/privacy_policy.html')
