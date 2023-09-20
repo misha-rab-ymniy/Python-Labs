@@ -1,5 +1,44 @@
-{% extends "cinema/base.html" %}
+{% extends 'cinema/base.html' %}
 {% load static %}
+
+{% block title %}Main page{% endblock %}
+
 {% block content %}
-    <div>ЛОХ</div>
+    <section>
+        <h2>Последняя новость</h2>
+        <h3 itemscope itemtype="https://schema.org/Article">
+            <a itemprop="name" href="{{ last_article.get_absolute_url }}">{{ last_article.title }}</a> -
+            <time itemprop="dateCreated"
+                  content="{{ last_article.created_at }}">{{ last_article.created_at|date:'Y-m-d H:i' }}</time>
+        </h3>
+        <p>{{ last_article.description }}</p>
+    </section>
+
+    <section>
+        <h2>Banner</h2>
+        <figure>
+            <img src="{% static 'images/cinema.webp' %}" alt="Cinema building">
+            <figcaption>
+                <em>Познакомьтесь c искусством через нащ кинотеатр.</em>
+            </figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>Наши партнеры:</h2>
+        <ul>
+            <li itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="url" content="https://pixelplex.io">
+                <a href="https://pixelplex.io" itemprop="name">Pixelplex</a>
+                <img itemprop="image" src="https://pixelplex.io/favicon-32x32.png" alt="pixelplex icon" height="12">
+            </li>
+            <li itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="url" content="https://bsuir.by">
+                <a href="https://bsuir.by" itemprop="name">Bsuir</a>
+                <img itemprop="image" src="https://bsuir.by/favicon.ico" alt="bsuir icon" height="12">
+            </li>
+        </ul>
+    </section>
+
+
 {% endblock %}

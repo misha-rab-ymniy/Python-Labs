@@ -1,11 +1,14 @@
 from cart.forms import CartAddFilmForm
 from django.shortcuts import render, get_object_or_404
+from news.models import Article
 
 from .models import Category, Film
 
 
 def main(request):
-    return render(request, 'cinema/main.html')
+    context = {}
+    context["last_article"] = Article.objects.order_by("-created_at").first()
+    return render(request, 'cinema/main.html', context)
 
 
 # Create your views here.
