@@ -16,3 +16,7 @@ def privacy_policy(request):
 
 def contacts(request):
     return render(request, 'contacts/contacts.html')
+
+
+def additional(request):
+    return render(request, 'additional/additional.html')

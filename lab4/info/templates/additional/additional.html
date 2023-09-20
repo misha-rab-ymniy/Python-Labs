@@ -1,0 +1,58 @@
+{% extends 'cinema/base.html' %}
+
+{% block title %}Additional{% endblock %}
+
+{% block content %}
+    <section id="poem">
+        <h2>Стихотворение</h2>
+        <p>
+            Ад прадзедаў спакон вякоў<br>
+            Мне засталася спадчына;<br>
+            Паміж сваіх і чужакоў<br>
+            Яна мне ласкай матчынай.<br>
+        </p>
+    </section>
+
+    <section id="wbr">
+        <h2>WBR</h2>
+        <p>Привет
+            <wbr>
+            как
+            <wbr>
+            дела?
+            <wbr>
+            Нормально,
+            <wbr>
+            Нереально
+        </p>
+    </section>
+    <section id="defenitions">
+        <h2>Определения</h2>
+        <dl>
+            <dt><abbr title="HyperText Markup Language">HTML</abbr></dt>
+            <dd>HTML стандартизированный язык гипертекстовой разметки документов для просмотра веб-страниц в браузере.
+            </dd>
+
+            <dt><abbr title="Cascading Style Sheets">CSS</abbr></dt>
+            <dd>CSS формальный язык декорирования и описания внешнего вида документа (веб-страницы), написанного с
+                использованием языка разметки.
+            </dd>
+        </dl>
+    </section>
+    <section id="quotes">
+        <h2>Цитата</h2>
+        <blockquote>
+            <p>Жизнь — она как конфеты. Одним с коньяком, а другим — сосательные…
+            </p>
+            <footer>— Максим Коновалюк</footer>
+        </blockquote>
+        <p>Как сказал Тамби Масаев, <q>Все кто был со мной когда я был внизу, пристегнитесь, мы взлетаме</q></p>
+    </section>
+    <section>
+        <h2>Код</h2>
+        <code>
+            def contacts(request):<br>
+            return render(request, 'contacts/contacts.html')
+        </code>
+    </section>
+{% endblock %}
