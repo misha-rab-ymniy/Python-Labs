@@ -1,20 +1,26 @@
 {% extends 'cinema/base.html' %}
 
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/css/info.css' %}">
+{% endblock %}
+
 {% block title %}Контакты{% endblock %}
 
 {% block content %}
     <section>
         <h2>Работники кинотеатра</h2>
-        <ul>
-            <li itemscope itemtype="https://schema.org/Person">
+        <ul class="contact-list">
+            <li class="contact" itemscope itemtype="https://schema.org/Person">
                 <h3 itemprop="name">Майкл Стик</h3>
-                <p itemprop="jobTitle">Админимтратор</p>
+                <p itemprop="jobTitle">Админиcтратор</p>
                 <p>Email: <a href="mailto:alice.johnson@museum.com" itemprop="email">michael.stick@gmail.com</a></p>
                 <p>Phone: <span itemprop="telephone">(555) 987-6543</span></p>
                 <img src="https://images.pexels.com/photos/5905902/pexels-photo-5905902.jpeg?auto=compress&cs=tinysrgb&h=300"
                      alt="employee" itemprop="image">
             </li>
-            <li itemscope itemtype="https://schema.org/Person">
+            <li class="contact" itemscope itemtype="https://schema.org/Person">
                 <h3 itemprop="name">Максим Пухов</h3>
                 <p itemprop="jobTitle">Уборщик</p>
                 <p>Email: <a href="mailto:john.smith@museum.com" itemprop="email">michael.stick@gmail.com</a></p>
@@ -22,7 +28,7 @@
                 <img src="https://images.pexels.com/photos/1267312/pexels-photo-1267312.jpeg?auto=compress&cs=tinysrgb&h=300"
                      alt="employee" itemprop="image">
             </li>
-            <li itemscope itemtype="https://schema.org/Person">
+            <li class="contact" itemscope itemtype="https://schema.org/Person">
                 <h3 itemprop="name">Игорь Гламаздин</h3>
                 <p itemprop="jobTitle">Backend developer</p>
                 <p>Email: <a href="mailto:robert.davis@museum.com" itemprop="email">michael.stick@gmail.com</a></p>
@@ -30,7 +36,7 @@
                 <img src="https://images.pexels.com/photos/3084334/pexels-photo-3084334.jpeg?auto=compress&cs=tinysrgb&h=300"
                      alt="employee" itemprop="image">
             </li>
-            <li itemscope itemtype="https://schema.org/Person">
+            <li class="contact" itemscope itemtype="https://schema.org/Person">
                 <h3 itemprop="name">Дарья Демидова</h3>
                 <p itemprop="jobTitle">Помощник уборщика</p>
                 <p>Email: <a href="mailto:linda.garcia@museum.com" itemprop="email">michael.stick@gmail.com</a></p>

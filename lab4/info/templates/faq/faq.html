@@ -1,9 +1,15 @@
 {% extends 'cinema/base.html' %}
 
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/css/info.css' %}">
+{% endblock %}
+
 {% block title %}Часто задаваемые вопросы{% endblock %}
 
 {% block content %}
-    <section itemscope itemtype="https://schema.org/FAQPage">
+    <section class="faq-page" itemscope itemtype="https://schema.org/FAQPage">
         <h2 itemprop="name">Часто задаваемые вопросы</h2>
         <details itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
             <summary itemprop="name">Как узнать расписание сеансов и цены на билеты?</summary>

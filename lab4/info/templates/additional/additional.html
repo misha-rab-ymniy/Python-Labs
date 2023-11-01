@@ -40,19 +40,43 @@
         </dl>
     </section>
     <section id="quotes">
-        <h2>Цитата</h2>
+        <h2>Цитаты</h2>
         <blockquote>
             <p>Жизнь — она как конфеты. Одним с коньяком, а другим — сосательные…
             </p>
             <footer>— Максим Коновалюк</footer>
         </blockquote>
-        <p>Как сказал Тамби Масаев, <q>Все кто был со мной когда я был внизу, пристегнитесь, мы взлетаме</q></p>
+        <p>Как сказал Тамби Масаев, <q>Все кто был со мной когда я был внизу, пристегнитесь, мы взлетаем!</q></p>
     </section>
     <section>
         <h2>Код</h2>
-        <code>
-            def contacts(request):<br>
-            return render(request, 'contacts/contacts.html')
-        </code>
+        <pre>
+<code>
+    def contacts(request):<br>
+        return render(request, 'contacts/contacts.html')
+</code>
+       </pre>
+    </section>
+    <section id="audio">
+        <h2>Аудио</h2>
+        <figure>
+            <figcaption>Послушайте ЛСП - Номера:</figcaption>
+            <audio controls src="../static/music/lsp_nomera.mp3"></audio>
+        </figure>
+    </section>
+    <section id="video">
+        <h2>Видео</h2>
+        <figure>
+            <figcaption>Посмотрите видео про flexbox в css:</figcaption>
+            <video controls src="../static/video/Learn flexbox the easy way.mp4"></video>
+        </figure>
+    </section>
+    <section id="image">
+        <h2>Адаптивное фото</h2>
+        <figure>
+            <img src="../static/images/nature.jpg" alt="Природа"
+                 srcset="../static/images/nature-720.jpg 1000w">
+            <figcaption>Природа</figcaption>
+        </figure>
     </section>
 {% endblock %}

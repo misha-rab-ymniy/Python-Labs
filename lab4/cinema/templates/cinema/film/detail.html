@@ -1,11 +1,7 @@
 {% extends "cinema/base.html" %}
 {% load static %}
 {% block title %}
-    {% if category %}
-        {{ category.title }}
-    {% else %}
-        Все
-    {% endif %}
+    {{ film.name }}
 {% endblock %}
 {% block content %}
 
@@ -16,16 +12,18 @@
             <h1>{{ film.name }}</h1>
             <div class="cart-description">{{ product.description|linebreaks }}</div>
         </div>
-        <h2><a href="{{ film.category.get_absolute_url }}">{{ film.category }}</a></h2>
+        <h2>{% for category in film.category.all %}{{ category }} {% endfor %}</h2>
         <p class="weight">{{ film.description }}</p>
-        <p class="weight">{{ film.start_date }}</p>
     </div>
-    <p class="price">{{ film.price }} руб.</p>
+    {#    <p class="price">{{ film.price }} руб.</p>#}
     <form action="{% url 'cart:cart_add' film.id %}" method="post">
+        {% csrf_token %}
         <label class="count-label">Количество: </label>
         {{ cart_film_form.quantity }}
-        {% csrf_token %}
-        <br>
         <input class="submit-button" type="submit" value="Добавить в корзину">
     </form>
+    {% if user.is_staff %}
+        <a href="{% url 'cinema:film-edit' film.id film.slug %}">Edit</a> |
+        <a href="{% url 'cinema:film-delete' film.id film.slug %}">Delete</a>
+    {% endif %}
 {% endblock %}

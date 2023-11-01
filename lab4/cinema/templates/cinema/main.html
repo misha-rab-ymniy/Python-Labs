@@ -1,10 +1,14 @@
 {% extends 'cinema/base.html' %}
 {% load static %}
 
-{% block title %}Main page{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/css/main-page.css' %}">
+{% endblock %}
+
+{% block title %}Главная страница{% endblock %}
 
 {% block content %}
-    <section>
+    <section id="recent-article">
         <h2>Последняя новость</h2>
         <h3 itemscope itemtype="https://schema.org/Article">
             <a itemprop="name" href="{{ last_article.get_absolute_url }}">{{ last_article.title }}</a> -
@@ -14,31 +18,32 @@
         <p>{{ last_article.description }}</p>
     </section>
 
-    <section>
-        <h2>Banner</h2>
-        <figure>
-            <img src="{% static 'images/cinema.webp' %}" alt="Cinema building">
-            <figcaption>
-                <em>Познакомьтесь c искусством через нащ кинотеатр.</em>
-            </figcaption>
-        </figure>
-    </section>
+    <figure>
+        <img class="jump" src="{% static 'images/cinema.webp' %}" alt="Cinema building">
+        <figcaption>
+            <em>Познакомьтесь c искусством через наш кинотеатр.</em>
+        </figcaption>
+    </figure>
 
+    <section class="poem">
+        {% for line in poem %}
+            <p>{{ line }}</p>
+        {% endfor %}
+    </section>
     <section>
         <h2>Наши партнеры:</h2>
-        <ul>
-            <li itemscope itemtype="https://schema.org/Organization">
-                <meta itemprop="url" content="https://pixelplex.io">
-                <a href="https://pixelplex.io" itemprop="name">Pixelplex</a>
-                <img itemprop="image" src="https://pixelplex.io/favicon-32x32.png" alt="pixelplex icon" height="12">
+        <ul class="company-list">
+            <li class="company" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="url" content="https://www.apple.com/">
+                <a href="https://www.apple.com/" itemprop="name">Apple</a>
+                <img itemprop="image" src="https://makingteams.com/wp-content/uploads/2021/04/Apple.png"
+                     alt="apple icon">
             </li>
-            <li itemscope itemtype="https://schema.org/Organization">
+            <li class="company" itemscope itemtype="https://schema.org/Organization">
                 <meta itemprop="url" content="https://bsuir.by">
                 <a href="https://bsuir.by" itemprop="name">Bsuir</a>
-                <img itemprop="image" src="https://bsuir.by/favicon.ico" alt="bsuir icon" height="12">
+                <img itemprop="image" src="https://iis.bsuir.by/static/media/logo.5683d3b9.svg" alt="bsuir icon">
             </li>
         </ul>
     </section>
-
-
 {% endblock %}

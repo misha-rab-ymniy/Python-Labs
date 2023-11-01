@@ -1,13 +1,24 @@
 {% extends "cinema/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/css/news.css' %}">
+{% endblock %}
 
 {% block title %}Новости{% endblock %}
 
-{% load static %}
 {% block content %}
-    {% for article in object_list %}
-        <article>
-            <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
-            <p>{{ article.description }}</p>
-        </article>
-    {% endfor %}
+    <div class="article-list">
+        {% for article in object_list %}
+            <article class="article-card" itemscope itemtype="https://schema.org/Article">
+                <div class="textWrapper">
+                    <h3 itemprop="name" class="title">{{ article.title }}</h3>
+                    <p class="description"><a itemprop="description" href="{{ article.get_absolute_url }}">
+                        {{ article.description }}
+                    </a>
+                    </p>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
 {% endblock %}

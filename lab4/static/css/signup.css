@@ -13,7 +13,6 @@ h2 {
 .registration-form {
     display: flex;
     flex-direction: column;
-    align-items: left;
 }
 
 .registration_username {

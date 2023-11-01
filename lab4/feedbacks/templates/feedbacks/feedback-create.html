@@ -1,24 +1,33 @@
 {% extends 'cinema/base.html' %}
 
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/css/feedbacks.css' %}">
+{% endblock %}
+
 {% block title %}Создание отзыва{% endblock %}
 
 {% block content %}
-    <h2>Создайте новый отзыв</h2>
-    <form method="post">
-        {% csrf_token %}
-        <p>
-            <label for="id_title">Заголовок:</label>
-            <input type="text" name="title" maxlength="255" required="required" id="id_title">
-        </p>
-        <p>
-            <label for="id_rating">Рейтинг:</label>
-            <input type="number" name="rating" min="1" max="5" required="required" id="id_rating">
-        </p>
+    <div class="form-container">
+        <h2>Создайте новый отзыв</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_title">Заголовок:</label>
+                <input type="text" name="title" maxlength="255" required="required" id="id_title">
+            </p>
+            <p>
+                <label for="id_rating">Рейтинг:</label>
+                <input type="number" name="rating" min="1" max="5" required="required" id="id_rating">
+            </p>
 
-        <p>
-            <label for="id_content">Текст:</label>
-            <textarea name="content" required="required" id="id_content"></textarea>
-        </p>
-        <button type="submit">Сохранить</button>
-    </form>
+            <p>
+                <label for="id_content">Текст:</label>
+                <textarea name="content" required="required" id="id_content"></textarea>
+            </p>
+            <button class="submit-button" type="submit">Сохранить</button>
+        </form>
+    </div>
+
 {% endblock %}

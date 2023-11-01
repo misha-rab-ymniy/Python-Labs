@@ -1,42 +1,47 @@
 {% load static %}
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8"/>
+    <meta name="keywords" content="Cinema, Ticket">
     <meta name="description" content="Cinema app"/>
     <meta name="author" content="Mikhail Dubinka"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}Кинотеатр{% endblock %}</title>
     <link type="image/png" sizes="96x96" rel="shortcut icon" href="{% static 'images/logo.png' %}"/>
     <link href="{% static '/css/base.css' %}" rel="stylesheet"/>
-    <link href="{% static '/css/detail.css' %}" rel="stylesheet"/>
+    {% block styles %}{% endblock %}
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
 <header id="header">
-    <a href="{% url 'cinema:main' %}" class="logo"></a>
-    <a class="tab" href="{% url 'cinema:film_list' %}">Каталог</a>
-    <a class="tab" href="{% url 'info:coupons' %}">Купоны</a>
-    <a class="tab" href="{% url 'news_page' %}">Новости</a>
-    <a class="tab" href="{% url 'feedback-list' %}">Отзывы</a>
-    <a class="tab" href="{% url 'info:about_us' %}">О нас</a>
-    <a class="tab" href="{% url 'info:faq' %}">FAQ</a>
-    <a class="tab" href="{% url 'info:contacts' %}">Контакты</a>
-    <a class="tab" href="{% url 'info:privacy_policy' %}">Политика приватности</a>
-    {% if user.is_authenticated %}
-        <a class="tab log_link" href="{% url 'users:logout' %}">Выйти</a>
-    {% else %}
-        <a class="tab log_link" href="{% url 'users:signin' %}">Войти</a>
-    {% endif %}
-    {% with total_items=cart|length %}
-        {% if cart|length >= 0 %}
-            <a class="cart_icon tab" href="{% url 'cart:cart_detail' %}">Корзина | {{ cart|length }}</a>
+    <nav itemprop="breadcrumb">
+        <a href="{% url 'cinema:main' %}" class="logo"></a>
+        <a href="{% url 'cinema:film_list' %}">Каталог</a>
+        <a href="{% url 'info:coupons.css' %}">Купоны</a>
+        <a href="{% url 'news_page' %}">Новости</a>
+        <a href="{% url 'feedback-list' %}">Отзывы</a>
+        <a href="{% url 'info:about_us' %}">О нас</a>
+        <a href="{% url 'info:faq' %}">FAQ</a>
+        <a href="{% url 'info:contacts' %}">Контакты</a>
+        <a href="{% url 'info:privacy_policy' %}">Политика приватности</a>
+        <a href="{% url 'info:vacancies' %}">Вакансии</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'users:logout' %}">Выйти</a>
+        {% else %}
+            <a href="{% url 'users:signin' %}">Войти</a>
         {% endif %}
-    {% endwith %}
+        {% with total_items=cart|length %}
+            {% if cart|length >= 0 %}
+                <a class="cart_icon" href="{% url 'cart:cart_detail' %}">Корзина</a>
+            {% endif %}
+        {% endwith %}
+    </nav>
 </header>
-<main id="content">
+<main id="content" itemprop="mainContentOfPage">
     {% block content %} {% endblock %}
 </main>
 <footer>
-    <p>&copy; 2023 Cinema app. All rights reserved.</p>
+    <aside> A joke for you: <strong>{{ joke }}</strong></aside>
+    <p>&copy; 2023 Cinema app. All rights reserved. </p>
 </footer>
 </body>
 </html>

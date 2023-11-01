@@ -24,3 +24,7 @@ def additional(request):
 
 def coupons(request):
     return render(request, 'coupons/coupons.html')
+
+
+def vacancies(request):
+    return render(request, 'vacancies/vacancies.html')

@@ -1,0 +1,43 @@
+.about-us {
+    & ul {
+        list-style-type: none;
+    }
+}
+
+.logo-container {
+    width: 200px;
+    height: auto;
+}
+
+.full-logo {
+    width: 100%;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.full-logo:hover {
+    transform: scale(1.1);
+}
+
+.certificate {
+    width: 600px;
+    height: 400px;
+    background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    z-index: 0;
+    border: 30px solid;
+    border-image: url('../images/background.jpeg') 30 round;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+    z-index: 1;
+}

@@ -1,41 +1,45 @@
 {% extends "cinema/base.html" %}
 {% load static %}
+{% block styles %}
+    <link href="{% static '/css/list.css' %}" rel="stylesheet">
+{% endblock %}
 {% block title %}
     {% if category %}{{ category.name }}{% else %}Кинотеатр{% endif %}
 {% endblock %}
 {% block content %}
-    <link href="{% static '/css/list.css' %}" rel="stylesheet">
-    <div class="wrapper">
-        <div class="sidebar">
-            <ul class="sidebar_categories">
-                <li {% if not category %}class="selected category"{% else %}class="category"{% endif %}>
-                    <a class="category_link" href="{% url 'cinema:film_list' %}">Все</a>
+    <div class="sidebar">
+        <ul class="sidebar_categories">
+            <li {% if not category %}class="selected category"{% else %}class="category"{% endif %}>
+                <a class="category_link" href="{% url 'cinema:film_list' %}">Все</a>
+            </li>
+            {% for c in categories %}
+                <li {% if category.slug == c.slug %}class="selected category"{% else %}class="category"{% endif %}>
+                    <a class="category_link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                 </li>
-                {% for c in categories %}
-                    <li {% if category.slug == c.slug %}class="selected category"{% else %}class="category"{% endif %}>
-                        <a class="category_link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <h1>{% if category %}{{ category.name }}{% else %}Все{% endif %}</h1>
-        <div id="main" class="product-list{% if products|length == 1 %} single-item{% endif %}">
-            {% for film in films %}
-                <div class="item">
-                    <img src="
-                            {% if film.image %}{{ film.image.url }}{% else %}{% static 'images/img.png' %}{% endif %}">
-                    <div class="item-info">
-                        <div class="item-info_name">{{ film.name }}</div>
-                        <div class="item-info_description">{{ film.description }}</div>
-                        <div class="item-info_order">
-                            <div class="item-info_price">{{ film.price }} руб.</div>
-                            <a class="item-info_order_button" style="color:white;" href="{{ film.get_absolute_url }}">Билет</a>
-                        </div>
-
-                    </div>
-
-                </div>
             {% endfor %}
-        </div>
+        </ul>
+    </div>
+    <h1>{% if category %}{{ category.name }}{% else %}Все{% endif %}</h1>
+    {% if user.is_staff %}
+        <p><a href="{% url 'cinema:session-create' %}">Create</a></p>
+    {% endif %}
+    <div class="film-list">
+        {% for item in films %}
+            {% with film=item.film %}
+                <article class="film">
+                    <img src="
+
+
+
+                            {% if film.image %}{{ film.image.url }}{% else %}{% static 'images/img.png' %}{% endif %}">
+                    <div class="name">{{ film.name }}</div>
+                    <div class="description">{{ film.description }}</div>
+                    <div class="order">
+                        <div class="price">от {{ item.price }} руб.</div>
+                        <a class="order-button" href="{{ film.get_absolute_url }}">Билет</a>
+                    </div>
+                </article>
+            {% endwith %}
+        {% endfor %}
     </div>
 {% endblock %}
