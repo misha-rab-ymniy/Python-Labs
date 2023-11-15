@@ -3,6 +3,21 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static '/css/main-page.css' %}">
+    <style>
+        #banner {
+            position: absolute;
+            top: 250px;
+            left: 100px;
+
+            & img {
+                width: 540px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static '/js/banners.js' %}"></script>
 {% endblock %}
 
 {% block title %}Главная страница{% endblock %}
@@ -24,7 +39,19 @@
             <em>Познакомьтесь c искусством через наш кинотеатр.</em>
         </figcaption>
     </figure>
-
+    <section id="banner">
+        <a id="banner-link">
+            <img src='https://phonoteka.org/uploads/posts/2022-06/1654154583_27-phonoteka-org-p-kotiki-oboi-na-rabochii-stol-krasivo-32.jpg'
+                 alt="banner" id="banner-img">
+        </a>
+        {% if user.is_staff %}
+            <form id="interval-form">
+                <label for="interval">Enter interval in ms: </label>
+                <input type="number" name="interval" min="10" id="interval">
+                <input type="submit">
+            </form>
+        {% endif %}
+    </section>
     <section class="poem">
         {% for line in poem %}
             <p>{{ line }}</p>

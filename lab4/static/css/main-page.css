@@ -64,15 +64,16 @@
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     }
     50% {
-        transform: translate3d(960px, 0, 0) scale3d(1, 1, 1);
+        transform: translate3d(640px, 0, 0) scale3d(1, 1, 1);
     }
     55% {
-        transform: translate3d(1000px, 0, 0) scale3d(1, 1.2, 1);
+        transform: translate3d(700px, 0, 0) scale3d(1, 1.2, 1);
     }
 
 }
 
 .jump {
+    padding-left: 500px;
     transform-origin: 50% 50%;
     animation: jump 2s linear infinite;
     -webkit-animation: jump 2s linear infinite;
