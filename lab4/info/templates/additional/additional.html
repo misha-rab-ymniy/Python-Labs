@@ -1,8 +1,91 @@
 {% extends 'cinema/base.html' %}
 
+{% load static %}
+
 {% block title %}Additional{% endblock %}
 
+{% block scripts %}
+    <script src="{% static 'js/table.js' %}"></script>
+    <script src="{% static 'js/associativeArray.js' %}"></script>
+    <script src="{% static 'js/class.js' %}"></script>
+    <script src="{% static 'js/classPrototype.js' %}"></script>
+{% endblock %}
+
 {% block content %}
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            border: 1px solid #000;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+    <section id="table-container">
+        <form class="form" name="table-size-form">
+            <label for="table-size">Enter table size</label>
+            <input type="number" min="1" max="30" name="table-size" id="table-size">
+            <input class="button button-green" type="submit" value="Generate table!">
+        </form>
+        <div id="table-buttons-container" hidden>
+            <label for="max-selected-items">Max selected items</label>
+            <input type="number" name="max-selected-items" id="max-selected-items">
+            <button class="button button-green" id="add-row-button">Add row</button>
+            <button class="button button-green" id="add-column-button">Add column</button>
+            <button class="button button-green" id="transpose-button">Transpose</button>
+        </div>
+    </section>
+
+    <section id="associative-container">
+        <p>Associative array (map)</p>
+        <form class="form" name="associative-form">
+            <label for="firstname">Firstname:</label>
+            <input type="text" minlength="1" name="firstname" id="firstname">
+            <label for="lastname">Lastname:</label>
+            <input type="text" minlength="1" name="lastname" id="lastname">
+            <label for="physics">Physics mark:</label>
+            <input type="number" min="0" max="10" name="mark" id="physics">
+            <label for="math">Physics mark:</label>
+            <input type="number" min="0" max="10" name="mark" id="math">
+            <label for="literature">Physics mark:</label>
+            <input type="number" min="0" max="10" name="mark" id="literature">
+            <input class="button button-green" type="submit" value="Add student">
+        </form>
+        <ul id="student-list"></ul>
+    </section>
+
+    <section id="class">
+        <h3>Test class functions</h3>
+        <p>There's worker entity worker: name - 'misha', age - 20, experience - '15', salary - '3500', gender -
+            'male';</p>
+        <button id="getClassAgeButton">Get age</button>
+        <button id="getClassNameButton">Get name</button>
+        <button id="getClassExperienceButton">Get experience</button>
+        <button id="getClassSalaryButton">Get salary</button>
+        <button id="getClassFullInfoButton">Get full info</button>
+        <button id="getClassFullDecoratedInfoButton">Get decorated full info</button>
+    </section>
+
+    <section id="classPrototype">
+        <h3>Test prototype functions</h3>
+        <p>There's worker entity worker: name - 'vasya', age - 20, experience - '8', salary - '3500', gender -
+            'male';</p>
+        <button id="getClassProtoAgeButton">Get age</button>
+        <button id="getClassProtoNameButton">Get name</button>
+        <button id="getClassProtoExperienceButton">Get experience</button>
+        <button id="getClassProtoSalaryButton">Get salary</button>
+        <button id="getClassProtoFullInfoButton">Get full info</button>
+        <button id="getClassProtoFullDecoratedInfoButton">Get decorated full info</button>
+    </section>
+
     <section id="poem">
         <h2>Стихотворение</h2>
         <p>
@@ -53,8 +136,7 @@
         <pre>
 <code>
     def contacts(request):<br>
-        return render(request, 'contacts/contacts.html')
-</code>
+        return render(request, 'contacts/contacts.html')</code>
        </pre>
     </section>
     <section id="audio">
@@ -68,7 +150,7 @@
         <h2>Видео</h2>
         <figure>
             <figcaption>Посмотрите видео про flexbox в css:</figcaption>
-            <video controls src="../static/video/Learn flexbox the easy way.mp4"></video>
+            <video controls src="../static/video/flexbox.mp4"></video>
         </figure>
     </section>
     <section id="image">
