@@ -24,10 +24,12 @@ function bannersMain() {
     const intervalInput = document.getElementById('interval');
 
     const handleBannerSwitch = () => {
-        const currentBanner = items[currentItemIndex % items.length];
-        ++currentItemIndex;
-        bannerImage.src = currentBanner.img;
-        bannerLink.href = currentBanner.link;
+        if (document.hasFocus()) {
+            const currentBanner = items[currentItemIndex % items.length];
+            ++currentItemIndex;
+            bannerImage.src = currentBanner.img;
+            bannerLink.href = currentBanner.link;
+        }
     };
 
     let intervalId = setInterval(handleBannerSwitch, defaultInterval);

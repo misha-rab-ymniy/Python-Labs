@@ -35,7 +35,7 @@ associativeForm.onsubmit = (e) => {
     const literature = Number(getValueAndClear(literatureInput));
 
     const studentListItem = document.createElement('li');
-    studentListItem.textContent = `${firstname} ${lastname} physics: ${physics}, math: ${math}, literature: ${literature} cm`;
+    studentListItem.textContent = `${firstname} ${lastname} physics: ${physics}, math: ${math}, literature: ${literature}`;
     studentList.appendChild(studentListItem);
 
     const newStudent = {firstname, lastname, physics, math, literature, studentListItem};
