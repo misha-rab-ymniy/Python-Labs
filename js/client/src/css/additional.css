@@ -1,0 +1,17 @@
+.additional {
+    margin: 20px;
+}
+
+.additional button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #1f1a42;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.additional button:hover {
+    background-color: #3f3485;
+}
+

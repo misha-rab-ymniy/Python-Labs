@@ -1,0 +1,10 @@
+export const HOME_ROUTE = '/';
+export const NEWS_ROUTE = '/news';
+export const NEW_ARTICLE = '/news/new';
+export const MOVIES_ROUTE = '/movies';
+export const NEW_MOVIE = '/movies/new';
+export const FEEDBACKS_ROUTE = '/feedbacks';
+export const NEW_FEEDBACK_ROUTE = '/feedbacks/new';
+export const ADDITIONAL_ROUTE = '/additional';
+export const SIGN_IN_ROUTE = '/sign_in';
+export const SIGN_UP_ROUTE = '/sign_up';

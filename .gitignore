@@ -134,3 +134,6 @@ dmypy.json
 # Temp files
 lab2/task2/src/data/
 lab3/custom_serializer/test.py
+
+#js
+node_modules
