@@ -1,0 +1,34 @@
+{% extends 'cinema/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/css/feedbacks.css' %}">
+{% endblock %}
+
+{% block title %}Отзывы{% endblock %}
+
+{% block content %}
+    <div class="feedback-page">
+        <a class="button button-green" href="{% url 'feedback-create' %}">Новый отзыв</a>
+        {% if user.is_staff %}
+            <a href="{% url 'statistics' %}">Статистика</a>
+        {% endif %}
+        {% if not feedback_list %}
+            <p>Нет отзывов</p>
+        {% endif %}
+        {% for feedback in object_list %}
+            <article class="feedback" itemscope itemtype="https://schema.org/UserReview">
+                <h2>
+                    <span itemprop="name">{{ feedback.title }}</span> <span
+                        itemprop="reviewRating">{{ feedback.rating }}</span>/5
+                </h2>
+                <h3>
+                    Author: {{ feedback.author.first_name }} {{ feedback.author.last_name }} -
+                    <time itemprop="dateCreated" content="{{ feedback.created_at }}">{{ feedback.created_at }}</time>
+                </h3>
+                <p itemprop="reviewBody">{{ feedback.content }}</p>
+            </article>
+        {% endfor %}
+    </div>
+{% endblock %}

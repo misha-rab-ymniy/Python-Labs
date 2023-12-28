@@ -1,0 +1,98 @@
+.registration-wrapper {
+    font-family: "Robotto", sans-serif;
+    margin-top: 200px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registration_username {
+    margin-bottom: 10px;
+}
+
+#id_username {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+#id_first_name {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+#id_last_name {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+#id_phone {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+#id_address {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.registration_password1 {
+    margin-bottom: 10px;
+}
+
+#id_password1 {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+#id_password {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.registration_password2 {
+    margin-bottom: 10px;
+}
+
+#id_password2 {
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.submit {
+    margin-top: 20px;
+    display: block;
+    height: 40px;
+    width: fit-content;
+    padding-left: 17px;
+    padding-right: 17px;
+    background-color: rgb(255, 94, 0);
+    border: none;
+    color: white;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.submit:hover {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.registration-link {
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+}
+
+.registration-link:hover {
+    font-weight: bold;
+}

@@ -1,0 +1,72 @@
+{% extends 'cinema/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static '/css/info.css' %}">
+{% endblock %}
+
+{% block title %}Вакансии{% endblock %}
+
+{% block content %}
+    <h2>Вакансии в нашем кинотеатре</h2>
+
+    <section class="vacancies-list">
+        <article class="vacancies" itemscope itemtype="https://schema.org/JobPosting">
+            <h3 itemprop="title">Кинокассир</h3>
+            <p itemprop="description"><strong>Описание:</strong> . Кинокассир будет отвечать за продажу билетов,
+                консультирование клиентов и обеспечение удовольствия посетителей.</p>
+            <p><strong>Требования:</strong></p>
+            <ul>
+                <li>Ответственность и пунктуальность.</li>
+                <li>Отличные навыки обслуживания клиентов.</li>
+                <li>Способность работать в высоконагруженной среде.</li>
+            </ul>
+            <p><strong itemprop="a">Дедлайн вакансии: Октябрь 15, 2023</strong></p>
+        </article>
+
+        <article class="vacancies" itemscope itemtype="https://schema.org/JobPosting">
+            <h3 itemprop="title">Бармен кинотеатра</h3>
+            <p itemprop="description"><strong>Описание:</strong> Мы приглашаем барменов в наш кинотеатр для обслуживания
+                посетителей в кинобаре. Работа включает в себя приготовление напитков и закусок, а также обслуживание
+                клиентов.</p>
+            <p><strong>Требования:</strong></p>
+            <ul>
+                <li>Опыт работы в баре приветствуется.</li>
+                <li>Знание разнообразных напитков и коктейлей.</li>
+                <li>Отличные коммуникативные навыки.</li>
+            </ul>
+            <p><strong>Дедлайн вакансии: Октябрь 20, 2023</strong></p>
+        </article>
+
+        <article class="vacancies" itemscope itemtype="https://schema.org/JobPosting">
+            <h3 itemprop="title">Технический специалист по аудио и видео</h3>
+            <p itemprop="description"><strong>Описание:</strong> Мы ищем технического специалиста, ответственного за
+                оборудование для показа фильмов. Это включает в себя настройку и обслуживание проекторов, аудиосистем и
+                видеооборудования.</p>
+            <p><strong>Требования:</strong></p>
+            <ul>
+                <li>Опыт работы с аудио- и видеооборудованием.</li>
+                <li>Знание технических аспектов кинопоказов.</li>
+                <li>Способность решать технические проблемы.</li>
+            </ul>
+            <p><strong>Дедлайн вакансии: Октябрь 25, 2023</strong></p>
+        </article>
+
+        <article class="vacancies" itemscope itemtype="https://schema.org/JobPosting">
+            <h3 itemprop="title">Технический специалист по аудио и видео</h3>
+            <p itemprop="description"><strong>Описание:</strong> Мы ищем технического специалиста, ответственного за
+                оборудование для показа фильмов. Это включает в себя настройку и обслуживание проекторов, аудиосистем и
+                видеооборудования.</p>
+            <p><strong>Требования:</strong></p>
+            <ul>
+                <li>Опыт работы с аудио- и видеооборудованием.</li>
+                <li>Знание технических аспектов кинопоказов.</li>
+                <li>Способность решать технические проблемы.</li>
+            </ul>
+            <p><strong>Дедлайн вакансии: Октябрь 25, 2023</strong></p>
+        </article>
+        <p class="clearfix">Этот парграф не обтекает предыдущие элементы.</p>
+    </section>
+
+{% endblock %}

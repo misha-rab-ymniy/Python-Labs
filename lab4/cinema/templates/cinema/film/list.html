@@ -1,0 +1,72 @@
+{% extends "cinema/base.html" %}
+{% load static %}
+{% block styles %}
+    <link href="{% static '/css/list.css' %}" rel="stylesheet">
+    <style>
+
+        .fade-out {
+            opacity: 0;
+            filter: blur(5px);
+        {#transform: translateX(-100%);#} transition: all 1s;
+        }
+
+        .fade-in {
+            opacity: 1;
+            filter: blur(0);
+        {#transform: translateX(0);#}
+        }
+
+        .crossed {
+            text-decoration: line-through;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <div id="my-element" data-context="{{ js_films }}"></div>
+    <script src="{% static 'js/scrollAnimation.js' %}"></script>
+    <script src="{% static 'js/coupons.js' %}"></script>
+{% endblock %}
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Кинотеатр{% endif %}
+{% endblock %}
+{% block content %}
+    <div class="sidebar">
+        <ul class="sidebar_categories">
+            <li {% if not category %}class="selected category"{% else %}class="category"{% endif %}>
+                <a class="category_link" href="{% url 'cinema:film_list' %}">Все</a>
+            </li>
+            {% for c in categories %}
+                <li {% if category.slug == c.slug %}class="selected category"{% else %}class="category"{% endif %}>
+                    <a class="category_link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <h1>{% if category %}{{ category.name }}{% else %}Все{% endif %}</h1>
+    {% if user.is_staff %}
+        <p><a href="{% url 'cinema:session-create' %}">Create</a></p>
+    {% endif %}
+    <form id="coupon-form">
+        <label for="coupon-input">Enter coupon</label>
+        <input type="text" id="coupon-input">
+        <input type="submit">
+    </form>
+    <p id="coupon-form-text"></p>
+    <div class="film-list">
+        {% for item in films %}
+            {% with film=item.film %}
+                <article class="film">
+                    <img class="animation" src="
+                            {% if film.image %}{{ film.image.url }}{% else %}{% static 'images/img.png' %}{% endif %}">
+                    <div class="name">{{ film.name }}</div>
+                    <div class="description">{{ film.description }}</div>
+                    <div class="order">
+                        <p>от <span class="price">{{ item.price }}</span><span class="new-price"></span> руб.</p>
+                        <a class="order-button" href="{{ film.get_absolute_url }}">Билет</a>
+                    </div>
+                </article>
+            {% endwith %}
+        {% endfor %}
+    </div>
+{% endblock %}

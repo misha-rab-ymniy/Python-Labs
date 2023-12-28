@@ -1,0 +1,69 @@
+/* CSS стили для корзины */
+.cart {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cart_item {
+    display: flex;
+
+    align-items: start;
+    margin-bottom: 60px;
+}
+
+.cart_item_image {
+    display: block;
+    margin-right: 20px;
+}
+
+.cart_item_name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cart_item_product_description {
+    margin-bottom: 60px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.cart_item_price {
+    margin-bottom: 95px;
+    font-size: 18px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.cart-button {
+    display: block;
+    height: 40px;
+    width: fit-content;
+    padding-left: 17px;
+    padding-right: 17px;
+    background-color: rgb(255, 94, 0);
+    color: white;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.cart-button:hover {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.grey {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cart_buttons {
+    display: flex;
+    gap: 60px;
+
+}

@@ -1,0 +1,57 @@
+/* detail.css */
+.product-detail {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container img {
+    max-width: 20%;
+    height: auto;
+}
+
+
+h2 a {
+    text-decoration: none;
+    color: #333;
+}
+
+.price {
+    font-weight: bolder;
+    font-size: 18px;
+
+}
+
+.count-label {
+    margin-right: 130px;
+
+}
+
+#id_quantity {
+    width: 60px;
+    height: 40px;
+}
+
+.submit-button {
+    display: block;
+    margin-top: 40px;
+    border: none;
+    height: 40px;
+    width: fit-content;
+    padding-left: 17px;
+    padding-right: 17px;
+    background-color: rgb(255, 94, 0);
+    color: white;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.submit-button:hover {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.cart-description {
+    color: rgba(0, 0, 0, 0.5);
+}

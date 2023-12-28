@@ -1,0 +1,71 @@
+.feedback-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feedback {
+    width: 700px;
+    margin: 15px 0;
+    text-align: center;
+
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td:empty {
+    background-color: red;
+}
+
+
+table caption {
+    font-weight: bold;
+    text-align: center;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+table {
+    margin: 0 auto;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(229, 231, 235, 0.37);
+}
+
+td:first-child {
+    font-weight: bold;
+}
+
+th {
+    background-color: #ccc;
+}
+
+.form-container {
+    margin-left: 5rem;
+}
+
+form {
+
+    & :focus {
+        border: 4px solid #007BFF;
+    }
+
+    & input[type="number"] {
+        color: blue;
+    }
+
+    & .submit-button:hover {
+        background-color: #007BFF;
+        color: #FFF;
+    }
+}
+
+input:required {
+    border: 2px solid red;
+}

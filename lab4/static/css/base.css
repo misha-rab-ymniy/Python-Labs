@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    background-color: floralwhite;
+    margin-top: 4.5rem;
+    margin-bottom: 55px;
+    line-height: 1.6;
+}
+
+main {
+    margin-top: 120px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+a {
+    color: #000000;
+}
+
+.tab {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background: #e5e7eb;
+    top: 0;
+    z-index: 2;
+    height: 110px;
+}
+
+header nav {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 2rem;
+    line-height: 80px;
+
+    & a {
+        text-decoration: none;
+    }
+}
+
+.logo {
+    background-image: url('../images/logo.png');
+    height: 80px;
+    width: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 40% 40%;
+}
+
+.cart_icon {
+    width: 150px;
+    height: 40px;
+    background-color: rgb(255, 94, 0);
+    color: white;
+    border-radius: 30px;
+    line-height: 40px;
+    text-align: center;
+    cursor: url("../images/cart-icon.png") 24 24, auto;
+}
+
+.cart_icon:hover {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+footer {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(229, 231, 235, 1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.birthdate-prompt {
+    background-color: white;
+
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    margin: 1%;
+    padding: 1%;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 0.2rem solid black;
+    border-radius: 0.6rem;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+
+    & input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+}

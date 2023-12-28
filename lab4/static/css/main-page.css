@@ -1,0 +1,83 @@
+#recent-article {
+    position: relative;
+    top: 50px;
+    left: 800px;
+    height: 200px;
+    width: 500px;
+    z-index: 1;
+}
+
+.poem {
+    margin-top: 40px;
+    text-align: center;
+
+    & p {
+        font-size: x-large;
+    }
+
+    & p:nth-of-type(2n + 2) {
+        color: green;
+    }
+
+    & p::first-letter {
+        color: red;
+        font-weight: bold;
+    }
+}
+
+.company-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .company {
+        margin: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        border-radius: 50%;
+        height: 7rem;
+        width: 7rem;
+        box-shadow: 3px 3px 5px red, -3px -3px 5px blue, inset 8px 8px 5px #000000, inset -2px -2px 0 #000000;
+        padding: 1rem;
+        background: #4ac1f7;
+
+        & a {
+            font-kerning: none;
+            font-weight: bold;
+        }
+
+        & a:visited {
+            color: purple;
+        }
+
+        & img {
+            height: 5rem;
+            width: 5rem;
+        }
+    }
+}
+
+@keyframes jump {
+    0% {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+    50% {
+        transform: translate3d(640px, 0, 0) scale3d(1, 1, 1);
+    }
+    55% {
+        transform: translate3d(700px, 0, 0) scale3d(1, 1.2, 1);
+    }
+
+}
+
+.jump {
+    padding-left: 500px;
+    transform-origin: 50% 50%;
+    animation: jump 2s linear infinite;
+    -webkit-animation: jump 2s linear infinite;
+    -moz-animation: jump 2s linear infinite;
+    -o-animation: jump 2s linear infinite;
+}
+
