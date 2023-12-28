@@ -1,3 +1,5 @@
+import json
+
 from cart.forms import CartAddFilmForm
 from django.db.models import Min
 from django.shortcuts import render, get_object_or_404, redirect
@@ -31,10 +33,16 @@ def film_list(request, category_slug=None):
                 answer.append(film)
         films = answer
 
+    js_list = []
+    for film in films:
+        js_list.append(film['price'])
+
+    print(json.dumps(js_list))
     return render(request, 'cinema/film/list.html',
                   {'category': category,
                    'categories': categories,
-                   'films': films})
+                   'films': films,
+                   'js_films': json.dumps(js_list)})
 
 
 def film_detail(request, id, slug):

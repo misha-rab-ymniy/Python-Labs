@@ -1,3 +1,6 @@
+let my_list = JSON.parse(document.querySelector('#my-element').dataset.context);
+console.log(typeof my_list[0]);
+
 function couponsMain() {
     const coupons = new Map([
         ['SCHOOL', {percents: 50}],
@@ -36,11 +39,11 @@ function couponsMain() {
 
         for (let i = 0; i < prices.length; ++i) {
             prices[i].classList.add('crossed');
-            newPrices[i].textContent = ' ' + (Number(prices[i].textContent) * (1 - discount.percents / 100)).toFixed(2).toString();
+            console.log(i);
+            newPrices[i].textContent = ' ' + (Number(my_list[i]) * (1 - discount.percents / 100)).toFixed(2).toString();
         }
         couponFormText.textContent = 'Coupon applied!';
     });
-
 }
 
 couponsMain();

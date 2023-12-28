@@ -1,14 +1,14 @@
 items = [
     {
-        img: 'https://phonoteka.org/uploads/posts/2022-06/1654154583_27-phonoteka-org-p-kotiki-oboi-na-rabochii-stol-krasivo-32.jpg',
+        img: 'https://images.wallpaperscraft.ru/image/single/kot_lezhat_kotenok_91882_1920x1080.jpg',
         link: 'https://catalog-photo.ru/картинки-на-заставку-котики-фото/',
     },
     {
-        img: 'https://top-fon.com/uploads/posts/2023-02/1675327302_top-fon-com-p-koti-fon-dlya-prezentatsii-213.jpg',
+        img: 'https://images.wallpaperscraft.ru/image/single/kot_zima_pushistyj_99366_1920x1080.jpg',
         link: 'https://top-fon.com/fony-dlja-prezentacii/6834-koty-fon-dlja-prezentacii-182-foto.html',
     },
     {
-        img: 'https://i.artfile.ru/1920x1080_1315239_[www.ArtFile.ru].jpg',
+        img: 'https://images.wallpaperscraft.ru/image/single/kot_sneg_vzgliad_95615_1920x1080.jpg',
         link: 'https://www.artfile.ru/i.php?i=1315239',
     },
 ];
